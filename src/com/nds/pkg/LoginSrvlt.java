@@ -5,6 +5,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import connections.user;
 /**
  * Servlet implementation class LoginSrvlt
@@ -29,7 +31,20 @@ public class LoginSrvlt extends HttpServlet {
 		String psw = request.getParameter("pass");
 		
 		if(psw.equals(u.getPassword())&&user.equalsIgnoreCase(u.getUserName())){
-			u.closeUser();
+			HttpSession session = request.getSession();
+            session.setAttribute("uName", user);
+            session.setAttribute("pass", psw);
+            session.setAttribute("hidPass", u.getHiddenPassword());
+            session.setAttribute("company", u.getCompanyName());
+            session.setAttribute("uAddress", u.getAddressLn1());
+            session.setAttribute("uCity", u.getCity());
+            session.setAttribute("uState", u.getState());
+            session.setAttribute("uZip", u.getZip());
+            session.setAttribute("email", u.getEmail());
+            session.setAttribute("csEmail", u.getCSEmail());
+            session.setAttribute("csPhone", u.getCSPhone());
+    		session.setAttribute("path", u.getFilePath());
+    		u.closeUser();
 			request.getRequestDispatcher("/EmployeeHome.jsp").forward(request, response);
 		}
 		else{

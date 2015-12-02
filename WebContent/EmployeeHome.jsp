@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Profile Center</title>
+<title>Employee Home</title>
 
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
@@ -21,12 +21,11 @@
 <a href="Login.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Log Out</b></font></a><br><br>
 </div>
 
-<div><h2>Employee Web Portal Login</h2>
-${hidPass}<br>
-<form action="EmpEditSrvlt.jsp" method="post">	
-	<input type="text" name="name"/><br><sup>Username</sup><br><br>
-    <input type="password" name="pass"/><br><sup>Password</sup><br><br>
-    <input type="submit" value="Login">          
+<div id="section">
+<h2>Welcome Drone</h2>
+
+<form action="EmpHomeSrvlt" method="post">
+    <input type="submit" value="View/Edit Profile">            
 </form>
 </div>
 

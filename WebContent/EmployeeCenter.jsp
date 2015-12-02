@@ -28,15 +28,15 @@
 	<table>
 		<tr>
 			<td>User Name: </td>
-			<td>${uName}<input type="hidden" name="uName" value="${uName}"/></td>
+			<td>${uName}</td>
 		</tr>
 		<tr>
 			<td>Password: </td>
-    		<td>${hidPass}<input type="hidden" name="pass" value="${pass}"/></td>
+    		<td>${hidPass}</td>
   		</tr>
   		<tr>
 			<td>Password Recovery E-mail: </td>
-    		<td>${email}<input type="hidden" name="email" value="${email}"/></td>
+    		<td>${email}</td>
   		</tr>
   		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit User Info" name = "edit"></td></tr>
 	</table>
@@ -44,16 +44,15 @@
 	<table>
 		<tr>
   			<td>Company Address: </td>
-  			<td>${company}<input type="hidden" name="company" value="${company}"/></td>
+  			<td>${company}</td>
   		</tr>
   		<tr>
   			<td></td>
-  			<td>${address}<input type="hidden" name="address" value="${address}"/></td>
+  			<td>${uAddress}</td>
   		</tr>
   		<tr>
   			<td></td>
-  			<td>${city}, ${state} ${zip}
-  			<input type="hidden" name="city" value="${city}"/><input type="hidden" name="state" value="${state}"/><input type="hidden" name="zip" value="${zip}"/></td>
+  			<td>${uCity}, ${uState} ${uZip}</td>
   		</tr>
   		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Address" name="edit"></td></tr>
 	</table>
@@ -61,11 +60,11 @@
 	<table>
 		<tr>
   			<td>Customer Service E-mail: </td>
-  			<td>${csEmail}<input type="hidden" name="csEmail" value="${csEmail}"/></td>
+  			<td>${csEmail}</td>
   		</tr>
   		<tr>
   			<td>Customer Service Phone: </td>
-  			<td>${csPhone}<input type="hidden" name="csPhone" value="${csPhone}"/></td>
+  			<td>${csPhone}</td>
   		</tr>
   		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Contact Info" name="edit"></td></tr>
 	</table>
@@ -73,7 +72,7 @@
 	<table>
 		<tr>
   			<td>File Path: </td>
-  			<td>${path}<input type="hidden" name="path" value="${path}"/></td>
+  			<td>${path}</td>
   		</tr>
   		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Path" name="edit"></td></tr>
 	</table>
