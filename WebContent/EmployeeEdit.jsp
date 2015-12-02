@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Employee Home</title>
+<title>Profile Center</title>
 
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
@@ -15,18 +15,20 @@
 
 <div id="nav">
 <a href="EmployeeHome.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Home</b></font></a><br><br>
-<a href="EmployeeCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Employee Center</b></font></a><br><br>
 <a href="CustomerCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Customer Center</b></font></a><br><br>
 <a href="PublicationCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Publications</b></font></a><br><br>
 <a href="Printing.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Printing</b></font></a><br><br>
 <a href="Login.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Log Out</b></font></a><br><br>
 </div>
 
-<div id="section">
-<h2>Welcome Drone</h2>
-
+<div><h2>${edit}</h2>
+${errorMsg}<br>
 <form action="EmpHomeSrvlt" method="post">
-    <input type="submit" value="View/Edit Profile">            
+	<input type="text" name="name" value="${uName}"/><br><sup>Username (3-16 characters; no spaces)</sup><br><br>
+    <input type="password" name="pass" value="${pass}"/><br><sup>Password (8-16 characters)</sup><br><br>
+    <input type="password" name="confirm" /><br><sup>Confirm Password</sup><br><br>
+    <input type="text" name="em" value="${email}"/><br><sup>E-mail</sup><br><br>
+    <input type="submit" value="Submit Profile Edit" name="sub">          
 </form>
 </div>
 

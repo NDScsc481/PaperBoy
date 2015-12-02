@@ -34,12 +34,10 @@ public class EmpEditSrvlt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String e = request.getParameter("edit");
-		if(e.equals("Edit User Info")){
-			request.setAttribute("uName", request.getParameter("uName"));
-			request.setAttribute("pass", request.getParameter("pass"));
-			request.setAttribute("email", request.getParameter("email"));
-		}
+		String e = (String)request.getParameter("edit");
+		request.setAttribute("edit", e);
+		if(e.equals("Edit User Info"))
+			request.getRequestDispatcher("/EmployeeEdit.jsp").forward(request, response);
 		else{
 			
 		}
