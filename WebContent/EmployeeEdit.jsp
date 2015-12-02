@@ -28,7 +28,7 @@ ${errorMsg}<br>
     <input type="password" name="pass" value="${pass}"/><br><sup>Password (8-16 characters)</sup><br><br>
     <input type="password" name="confirm" /><br><sup>Confirm Password</sup><br><br>
     <input type="text" name="em" value="${email}"/><br><sup>E-mail</sup><br><br>
-    <input type="submit" value="Submit Profile Edit" name="sub">          
+    <input type="submit" value="Submit Profile Edit" name="sub">  <input type="submit" value="Cancel" name="sub">  
 </form>
 </div>
 
