@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Profile Center</title>
+<title>Edit Profile</title>
 
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
@@ -21,9 +21,9 @@
 <a href="Login.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Log Out</b></font></a><br><br>
 </div>
 
-<div><h2>${edit}</h2>
+<div><h2>Edit User Info</h2>
 ${errorMsg}<br>
-<form action="EmpHomeSrvlt" method="post">
+<form action="EmpEditSubSrvlt" method="post">
 	<input type="text" name="name" value="${uName}"/><br><sup>Username (3-16 characters; no spaces)</sup><br><br>
     <input type="password" name="pass" value="${pass}"/><br><sup>Password (8-16 characters)</sup><br><br>
     <input type="password" name="confirm" /><br><sup>Confirm Password</sup><br><br>
