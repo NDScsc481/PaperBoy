@@ -2,13 +2,13 @@ package connections;
 import java.sql.ResultSet;
 
 public class LatLng {
-	public int CID;
-	public double lat;
-	public double lng;
-	private double angle;
-	private double distance;
-	//private double userLat = ;
-	private double userLong;
+	private int CID;
+	private double lat;
+	private double lng;
+//	private double angle;
+//	private double distance;
+//	private double userLat;
+//	private double userLong;
 	
 	public LatLng(double lat,double lng ){
 		this.lat = lat;
@@ -36,6 +36,14 @@ public class LatLng {
 		this.lat = lat;
 		this.lng = lng;
 
+	}
+	
+	public double getLat(){
+		return lat;
+	}
+	
+	public double getLng(){
+		return lng;
 	}
 	
 	public String toString(){

@@ -32,8 +32,19 @@ public class CustEditSrvlt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String e = (String)request.getParameter("edit");
+		if(e.equals("Edit Name")){
+			request.getRequestDispatcher("/CustomerEditName.jsp").forward(request, response);
+		}
+		else{
+			if(e.equals("Edit Number")){
+				request.getRequestDispatcher("/CustomerEditNum.jsp").forward(request, response);
+			}
+			else{
+				if(e.equals("Edit Address")){
+					request.getRequestDispatcher("/CustomerEditAddress.jsp").forward(request, response);
+				}
+			}
+		}
 	}
-
 }

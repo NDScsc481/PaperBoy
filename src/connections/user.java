@@ -38,7 +38,7 @@ public class user {
 		CSPhone = csp;
 		CSEmail = cse;
 		filePath = fP+"/PaperBoyPrints";
-		if(!cn.userSetProfile(n, cN, p, a, c, s, z, e, csp, cse, filePath, myPoints.lat, myPoints.lng)){
+		if(!cn.userSetProfile(n, cN, p, a, c, s, z, e, csp, cse, filePath, myPoints.getLat(), myPoints.getLng())){
 			name = null;
 			System.out.println("FAILED");
 		}
@@ -101,11 +101,10 @@ public class user {
 		zip = z;
 		try{
 			myPoints = computeLatLng.getLatLongPositions(z + ", " + a + " " + s);
-
 		}catch(Exception f){
 			return false;
 		}
-		return cn.userModAddress(a, c, s, z, myPoints.lat, myPoints.lng);
+		return cn.userModAddress(a, c, s, z, myPoints.getLat(), myPoints.getLng());
 	}
 	
 	public boolean modUserEmail(String e){

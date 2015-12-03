@@ -41,6 +41,16 @@ public class EmpEditSrvlt extends HttpServlet {
 			if(e.equals("Edit Address")){
 				request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
 			}
+			else{
+				if(e.equals("Edit Contact Info")){
+					request.getRequestDispatcher("/EmployeeEditContact.jsp").forward(request, response);
+				}
+				else{
+					if(e.equals("Edit Path")){
+						request.getRequestDispatcher("/EmployeeEditPath.jsp").forward(request, response);
+					}
+				}
+			}
 		}
 	}
 }

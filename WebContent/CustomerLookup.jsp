@@ -5,43 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Customer Lookup</title>
+
 <head>
-<style>
-body {background-color: #e6c594}
-#header {
-  	position: relative;
-	width: 100%;
-	height: 130px;
-	background-image: url(http://i.imgur.com/eq7h2xU.png);
-	background-position: center;
-}
-#nav {
-    line-height:30px;
-    background-color: #bd9c7b;
-    height:550px;
-    width:200px;
-    float:left;
-    padding:20px;	      
-}
-#section {
-    width:auto;
-    height:200; 
-    float:left;
-    padding:50px;
-    overflow: auto;	 	 
-}
-#footer {
-    position: fixed;
-  	bottom: 0;
-    width: 100%;
-    background-color:black;
-    color:white;
-    clear:both;
-    text-align:center;
-   	padding:5px;	 	 
-}
-</style>
+<link rel="stylesheet" type="text/css" href="header.css">
 </head>
+
 <body>
 <div id="header"></div>
 
@@ -54,7 +22,16 @@ body {background-color: #e6c594}
 </div>
 
 <div id="section">
-<h1>Lookup Customer</h1>
+<h1>Lookup Customer</h1><br><br>
+Please Search by name and select customer with customer ID.
+<span id="error">${errorMsg}</span>
+<form action="CustSearchSrvlt" method="post">
+    <input type="text" name="n" value="${names}"/><input type="submit" value="Submit Name" name="sub">
+    <br><sup>Search by name (first and/or last name).</sup><br><br>
+    <input type="text" name="id"/><input type="submit" value="Submit ID" name="sub">
+    <br><sup>Select by customer ID.</sup>
+</form>
+<span>${results}</span>
 </div>
 
 <div id="footer">

@@ -23,7 +23,7 @@
 
 <div id="section">
 <h2>Profile</h2>
-
+<span id="message">${msg}<br></span>
 <form action="EmpEditSrvlt" method="post">
 	<table>
 		<tr>

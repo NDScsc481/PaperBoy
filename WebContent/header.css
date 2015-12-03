@@ -31,9 +31,11 @@ body {background-color: #e6c594}
     text-align:center;
    	padding:5px;	 	 
 }
-.boxed {
-  border: 3px solid #ddb16e;
-  padding: 3px;
+#message {
+	color: #33cc33;
+}
+#error {
+	color: #ff0000;
 }
 table{
     border: 2px solid #ddb16e;

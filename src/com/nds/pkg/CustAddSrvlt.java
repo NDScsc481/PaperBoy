@@ -5,6 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import connections.customer;
 
 /**
  * Servlet implementation class CustAddSrvlt
@@ -31,26 +34,89 @@ public class CustAddSrvlt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String first 	= request.getParameter("first");
-		String last 	= request.getParameter("last");
-		String add1 	= request.getParameter("add1");
-		String add2 	= request.getParameter("add2");
-		String city 	= request.getParameter("city");
-		String state 	= request.getParameter("state");
-		String zip 		= request.getParameter("zip");
-		String phone 	= request.getParameter("phone");
-		
-		if(!first.isEmpty() && !last.isEmpty() && !add1.isEmpty() && !city.isEmpty() && !state.isEmpty() && !zip.isEmpty() && !phone.isEmpty() ){
-		/*	if(!add2.isEmpty())
-				customer thisCustomer = new customer(first, last, phone, add1, city, state, zip);
-			else
-				customer thisCustomer = new customer(first, last, phone, add1, add2, city, state, zip);
-		*/	
-			request.setAttribute("Msg", "<p style='color:darkred'>" + first + " " + last + " was added successfully!</p>");
-			request.getRequestDispatcher("/CustomerAdd.jsp").forward(request, response);
-		}else{
-			request.setAttribute("Msg", "<p style='color:darkred'> Customer unsuccessfully added. One or more fields was left blank.</p>");
-			request.getRequestDispatcher("/CustomerAdd.jsp").forward(request, response);
-		}			
+		if(((String)request.getParameter("add")).equals("Cancel")){
+			request.getRequestDispatcher("/CustomerCenter.jsp").forward(request, response);
+		}
+		else{
+			String first =((String)request.getParameter("first")).trim();
+			String last =((String)request.getParameter("last")).trim();
+			String add1 =((String)request.getParameter("add1")).trim();
+			String add2 =((String)request.getParameter("add2")).trim();
+			String city =((String)request.getParameter("c")).trim();
+			String state =(String)request.getParameter("s");
+			String zip =((String)request.getParameter("z")).trim();
+			String phone = ((String)request.getParameter("p")).trim();
+			String err ="";
+			boolean valid = true;
+			if(first.length()==0||first.length()>30||last.length()==0||last.length()>30){
+				err+="Invalid first or last name (1-30 characters each).<br>";
+				valid=false;
+			}
+			else{
+				first=Character.toUpperCase(first.charAt(0)) + (first.substring(1)).toLowerCase();
+				last=Character.toUpperCase(last.charAt(0)) + (last.substring(1)).toLowerCase();
+				if(!first.matches("^[a-zA-Z]+$")){
+					err+="Invalid first name.<br>";
+					valid=false;
+				}
+				if(!last.matches("^[a-zA-Z]+$")){
+					err+="Invalid last name.<br>";
+					valid=false;
+				}
+			}
+			if(!add1.matches("\\d+\\s+[a-zA-Z]+(\\s+[a-zA-Z]+)+")){
+				err+="Invalid street name.<br>";
+				valid=false;
+			}
+			if(add2.length()!=0&&!add1.matches("[\\w+\\s*]+")&&add1.length()<30){
+				err+="Invalid optional address (30 characters maximum).<br>";
+				valid=false;
+			}
+			if(!city.matches("^[a-zA-Z ]+$")){
+				err+="Invalid city name.<br>";
+				valid=false;
+			}
+			if(!zip.matches("\\d{5}")){
+				err+="Invalid zip code (5 digits).<br>";
+				valid=false;
+			}
+			phone = phone.replaceAll("\\D", "");
+			if(!phone.matches("\\d{10}")){
+				err+="Invalid phone number (10 digits).<br>";
+				valid=false;
+			}
+			if(!valid){
+				request.setAttribute("errorMsg", err);
+				request.setAttribute("first", first);
+				request.setAttribute("last", last);
+				request.setAttribute("add1", add1);
+				request.setAttribute("add2", add2);
+				request.setAttribute("c", city);
+				request.setAttribute("s", state);
+				request.setAttribute("z", zip);
+				request.setAttribute("p", phone);
+				request.getRequestDispatcher("/CustomerAdd.jsp").forward(request, response);
+			}
+			else{
+				customer c;
+				if(add2.length()==0)
+					c = new customer(first, last, add1, city, state, zip, phone); 
+				else
+					c = new customer(first, last, add1, add2, city, state, zip, phone); 
+				HttpSession session = request.getSession();
+				session.setAttribute("CID", c.getCID());
+				c.close();
+				session.setAttribute("firstName", first);
+	            session.setAttribute("lastName", last);
+	            session.setAttribute("addr", add1);
+	            session.setAttribute("addr2", add2);
+	            session.setAttribute("city", city);
+	            session.setAttribute("state", state);
+	            session.setAttribute("zip", zip);
+	            session.setAttribute("phone", phone);
+				request.setAttribute("msg", "Customer successfully added to the system.");
+				request.getRequestDispatcher("/CustomerEdit.jsp").forward(request, response);
+			}			
+		}
 	}
 }

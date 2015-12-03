@@ -166,7 +166,7 @@ public class connect{
 						upsformattedAdd = rs.getString("Zip") +", "+ rs.getString("Address") + " " + rs.getString("State");
 				}
 			LatLng points = computeLatLng.getLatLongPositions(upsformattedAdd);
-	     	addCoordinates = "insert into COORDINATES (CustomerID, Latitude, Longitude)" + " values (\"" + CID + "\",\"" + points.lat + "\", \"" + points.lng + "\")";
+	     	addCoordinates = "insert into COORDINATES (CustomerID, Latitude, Longitude)" + " values (\"" + CID + "\",\"" + points.getLat() + "\", \"" + points.getLng() + "\")";
 			System.out.println(addCoordinates);
 			stmt.executeUpdate(addCoordinates);
 			}
@@ -185,7 +185,7 @@ public class connect{
 		try{
 			upsformattedAdd = z +", "+ addr + " " + s;
 			LatLng points = computeLatLng.getLatLongPositions(upsformattedAdd);
-	     	addCoordinates = "insert into COORDINATES (CustomerID, Latitude, Longitude)" + " values (\"" + CID + "\",\"" + points.lat + "\", \"" + points.lng + "\")";
+	     	addCoordinates = "insert into COORDINATES (CustomerID, Latitude, Longitude)" + " values (\"" + CID + "\",\"" + points.getLat() + "\", \"" + points.getLng() + "\")";
 			System.out.println(addCoordinates);
 			stmt.executeUpdate(addCoordinates);
 			return points;
@@ -205,6 +205,16 @@ public class connect{
 		catch(Exception e){
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public boolean modLatLngValues(int CID, double lat, double lng){
+		try{
+			stmt.executeUpdate("update coordinates set Latitude = " + lat + ", Longitude = " + lng + " where CustomerID = " + CID);
+			return true;
+		}
+		catch(Exception e){
+			return false;
 		}
 	}
 	
@@ -290,20 +300,17 @@ public class connect{
 	 * @param fN	The first name of the customer to search for
 	 * @param lN	The last name of the customer to search for
 	 **/
-	public ResultSet searchCustomer(int CID, String fN, String lN){
+	public ResultSet searchCustomer(int CID, String n1, String n2){
 		ResultSet rs;
 		try{
 			if(CID!=0){
 				rs = stmt.executeQuery("select * from customers where CustomerID = " + CID);
 			}
 			else{
-				if(fN.length()==0)
-					rs = stmt.executeQuery("select * from customers where LastName = \"" + lN + "\"");
+				if(n2.length()==0)
+					rs = stmt.executeQuery("select * from customers where LastName = \"" + n1 + "\" OR FirstName = \"" + n1 + "\"");
 				else{
-					if(lN.length()>0)
-						rs = stmt.executeQuery("select * from customers where FirstName = \"" + fN + "\" and LastName = \"" + lN + "\"");					
-					else
-						rs = stmt.executeQuery("select * from customers where FirstName = \"" + fN + "\"");
+					rs = stmt.executeQuery("select * from customers where (FirstName = \"" + n1 + "\" AND LastName = \"" + n2 + "\") OR (FirstName = \"" + n2 + "\" AND LastName = \"" + n1 + "\")");
 				}
 			}
 			return rs;

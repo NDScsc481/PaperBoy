@@ -49,11 +49,11 @@ public class DestinationRouter{
 	 * @return distance
 	 */
 	private static double CoordDistance(LatLng a, LatLng b){
-		double x1 = a.lat;
-		double x2 = b.lat;
+		double x1 = a.getLat();
+		double x2 = b.getLat();
 		
-		double y1 = a.lng;
-		double y2 = b.lng;
+		double y1 = a.getLng();
+		double y2 = b.getLng();
 		
 		double dist = (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2);
 

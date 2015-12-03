@@ -16,7 +16,7 @@
 </div>
 
 <div><h2>Employee Web Portal Login</h2>
-${errorMsg}<br>
+<span id="error">${errorMsg}<br></span>
 <form action="LoginSrvlt" method="post">	
 	<input type="text" name="name"/><br><sup>Username</sup><br><br>       
     <input type="password" name="pass"/><br><sup>Password</sup><br><br>

@@ -2,6 +2,7 @@ package connections;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class customer {
 
@@ -17,13 +18,11 @@ public class customer {
 	protected int PID;
 	protected String publicationName;
 	private String status;
-	private subscriptions mySubs;
 	private LatLng myPoints;
 	private connect cn = new connect();
 
 	// create new customer AddTypeOne
-	public customer(connect con, String fN, String lN, String addLn1, String c, String st, String z, String pN) {
-		cn = con;
+	public customer(String fN, String lN, String addLn1, String c, String st, String z, String pN) {
 		cn.addCustomer(fN, lN, addLn1, "", c, st, z, pN);
 		CID = cn.getCustomerID(pN);
 		myPoints = new LatLng(cn, CID, z, addLn1, st);
@@ -39,12 +38,10 @@ public class customer {
 	}
 
 	// create new customer AddTypeTwo
-	public customer(connect con, String fN, String lN, String addLn1, String addLn2, String c, String st, String z, String pN) {
-		cn = con;
+	public customer(String fN, String lN, String addLn1, String addLn2, String c, String st, String z, String pN) {
 		cn.addCustomer(fN, lN, addLn1, addLn2, c, st, z, pN);
 		CID = cn.getCustomerID(pN);
-		myPoints = new LatLng(cn, CID);
-		// mySubs = new subscriptions (cn, CID, pubID);
+		myPoints = new LatLng(cn, CID, z, addLn1, st);
 		status = "ACTIVE";
 		firstName = fN;
 		lastName = lN;
@@ -55,11 +52,9 @@ public class customer {
 		zip = z;
 		phoneNum = pN;
 	}
-
 	
 	// select customer with specified customer ID
-	public customer(connect con, int ID) {
-		cn = con;
+	public customer(int ID) {
 		ResultSet r = cn.searchCustomer(ID, "", "");
 		try {
 			while (r.next()) {
@@ -81,13 +76,13 @@ public class customer {
 				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
 			}
 			points.close();
-		} catch (Exception e) {
+		}catch (Exception e){
 			CID = 0;
 		}
 	}
 	
-	//this constructor creates a customer object strictly for the printing function. Only necessary information is initialized to values
-	public customer(int ID, String fN, String lN, String addLn1, String addLn2, String c, String s, String z){
+	//this constructor creates a customer object for search results. No access to points
+	public customer(int ID, String fN, String lN, String addLn1, String addLn2, String c, String s, String z, String p, String stat){
 		CID = ID;
 		firstName = fN;
 		lastName = lN;
@@ -96,14 +91,13 @@ public class customer {
 		city =c;
 		state = s;
 		zip = z;
+		phoneNum = p;
+		status = stat;
+		myPoints = null;
 	}
 
 	public LatLng getLatLng() {
 		return myPoints;
-	}
-
-	public subscriptions getMySubscriptions() {
-		return mySubs;
 	}
 
 	public String toString() {
@@ -133,12 +127,12 @@ public class customer {
         city = c;
         state = s;
         zip = z;
-        if(cn.modCustomerInfo(CID, "Address", addLn1)&&cn.modCustomerInfo(CID, "City", c)&&cn.modCustomerInfo(CID, "State", s)&&cn.modCustomerInfo(CID, "Zip", z)){
- 
-            return true;
-        }
-        else
-            return false;
+        try{
+        	myPoints = computeLatLng.getLatLongPositions(z + ", " + addLn1 + " " + s);
+        }catch(Exception f){
+        	return false;
+    	}
+        return (cn.modCustomerInfo(CID, "Address", addLn1)&&cn.modCustomerInfo(CID, "City", c)&&cn.modCustomerInfo(CID, "State", s)&&cn.modCustomerInfo(CID, "Zip", z));
     }
     
     public boolean modAddress(String addLn1, String addLn2, String c, String s, String z){
@@ -147,17 +141,26 @@ public class customer {
         city = c;
         state = s;
         zip = z;
-        if(cn.modCustomerInfo(CID, "Address", addLn1)&&cn.modCustomerInfo(CID, "AddressLineTwo", addLn2)&&cn.modCustomerInfo(CID, "City", c)&&cn.modCustomerInfo(CID, "State", s)&&cn.modCustomerInfo(CID, "Zip", z)){
- 
- 
-            return true;
+        try{
+        	myPoints = computeLatLng.getLatLongPositions(z + ", " + addLn1 + " " + s);
+        }catch(Exception f){
+        	return false;
         }
-        else
-            return false;
+        return (cn.modCustomerInfo(CID, "Address", addLn1)&&cn.modCustomerInfo(CID, "AddressLineTwo", addLn2)&&cn.modCustomerInfo(CID, "City", c)&&cn.modCustomerInfo(CID, "State", s)&&cn.modCustomerInfo(CID, "Zip", z));
     }
 	public boolean modPhoneNum(String pN) {
 		phoneNum = pN;
 		return cn.modCustomerInfo(CID, "Phone", pN);
+	}
+	
+	public boolean setStatus(String st){
+		if(status.equals(st)){
+			return false;
+		}
+		else{
+			status = st;
+			return cn.modCustomerInfo(CID, "Status", st);
+		}
 	}
 
 	public String getFirstName() {
@@ -168,45 +171,85 @@ public class customer {
 		return lastName;
 	}
 
-
-	public int getCustID() {
+	public int getCID(){
 		return CID;
 	}
-
-	 public boolean setStatus(String st){
-	        if(status.equals(st)){
-	            return false;
-	        }
-	        else{
-	            status = st;
-	            return cn.modCustomerInfo(CID, "Status", st);
-	        }//gg
-	    }
 	    
-	    public String getFullName(){
-	        return firstName + " " + lastName;
-	    }
-	    
-	    public String getAddress(){
-	        if(addrLineTwo!=null){
-	            return String.format("%s%n%s%n%s, %s %s", addrLineOne, addrLineTwo, city, state, zip);
-	        }
-	        else{
-	        	return String.format("%s%n%s, %s %s", addrLineOne, city, state, zip);
-	        }
-	    }
-	    
-	    //for use without creating a customer object
-	    public static String getAddress(String addLn1, String addLn2, String c, String s, String z){
-	        if(addLn2!=null&&addLn2!=""){
-	            return String.format("%s%n%s%n%s, %s %s", addLn1, addLn2, c, s, z);
-	        }
-	        else{
-	            return String.format("%s%n%s, %s %s", addLn1, c, s, z);
-	        }
-	    }
-	    
-	    public int getCID(){
-	        return CID;
-	    }
+	public String getFullName(){
+		return firstName + " " + lastName;
 	}
+	
+	public String getAddLn1(){
+		return addrLineOne;
+	}
+	
+	public String getAddLn2(){
+		return addrLineTwo;
+	}
+	
+	public String getCity(){
+		return city;
+	}
+	
+	public String getState(){
+		return state;
+	}
+	
+	public String getZip(){
+		return zip;
+	}
+	
+	public String getPhone(){
+		return phoneNum;
+	}
+	    
+	public String getAddress(){
+		if(addrLineTwo!=null){
+			return String.format("%s%n%s%n%s, %s %s", addrLineOne, addrLineTwo, city, state, zip);
+		}
+		else{
+			return String.format("%s%n%s, %s %s", addrLineOne, city, state, zip);
+		}
+	}
+	
+	public void close(){
+		cn.disconnect();
+	}
+	    	
+	//for use without creating a customer object
+	public static String getAddress(String addLn1, String addLn2, String c, String s, String z){
+		if(addLn2!=null&&addLn2!=""){
+			return String.format("%s%n%s%n%s, %s %s", addLn1, addLn2, c, s, z);
+		}
+		else{
+			return String.format("%s%n%s, %s %s", addLn1, c, s, z);
+		}
+	}
+	
+	public static ArrayList<String> getSearchCustomers(String fN, String lN){
+		connect c = new connect();
+		ResultSet r = c.searchCustomer(0, fN, lN);
+		ArrayList<String> allResults = new ArrayList<>();
+		try{
+			while(r.next()){
+				if(r.getString("AddressLineTwo")!=null)
+					allResults.add("Customer ID: "+r.getInt("CustomerID") + "<br>" + r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
+							r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
+							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
+							r.getString("Phone"));
+				else
+					allResults.add("Customer ID: "+r.getInt("CustomerID") + "<br>" + r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
+							r.getString("Address") + "<br>" +
+							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
+							r.getString("Phone"));
+			
+			}
+			r.close();
+			c.disconnect();
+			return allResults;
+		}catch(Exception e){
+			c.disconnect();
+			return null;
+		}
+	}
+}
