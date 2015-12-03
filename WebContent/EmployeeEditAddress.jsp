@@ -22,7 +22,7 @@
 </div>
 
 <div><h2>Edit Company Address</h2>
-<span id="error">${errorMsg}<br></span>
+<span id="error">${errorMsg}</span>
 <form action="EmpEditSubSrvlt" method="post">
 	<input type="text" name="cName" value="${company}"/><br><sup>Company Title</sup><br><br>
     <input type="text" name="addr" value="${uAddress}"/><br><sup>Street Address</sup><br><br>

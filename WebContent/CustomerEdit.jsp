@@ -4,45 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Customer Edit</title>
-<head>
+<title>Customer Profile</title>
 
-<style>
-body {background-color: #e6c594}
-#header {
-  	position: relative;
-	width: 100%;
-	height: 130px;
-	background-image: url(http://i.imgur.com/eq7h2xU.png);
-	background-position: center;
-}
-#nav {
-    line-height:30px;
-    background-color: #bd9c7b;
-    height:550px;
-    width:200px;
-    float:left;
-    padding:20px;	      
-}
-#section {
-    width:auto;
-    height:200; 
-    float:left;
-    padding:50px;
-    overflow: auto;	 	 
-}
-#footer {
-    position: fixed;
-  	bottom: 0;
-    width: 100%;
-    background-color:black;
-    color:white;
-    clear:both;
-    text-align:center;
-   	padding:5px;	 	 
-}
-</style>
+<head>
+<link rel="stylesheet" type="text/css" href="header.css">
 </head>
+
 <body>
 <div id="header"></div>
 
@@ -55,7 +22,57 @@ body {background-color: #e6c594}
 </div>
 
 <div id="section">
-<h1> Customer Edit</h1>
+<h2> Customer Profile</h2>
+<span id="message">${msg}<br></span>
+<form action="CustEditSrvlt" method="post">
+	<table>
+		<tr>
+			<td>Customer ID: </td>
+			<td>${CID}</td>
+		</tr>
+		<tr>
+			<td>First Name: </td>
+			<td>${firstName}</td>
+		</tr>
+		<tr>
+			<td>Last Name: </td>
+    		<td>${lastName}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Name" name = "edit"></td></tr>
+	</table>
+	<br>
+	<table>
+		<tr>
+			<td>Phone Number: </td>
+    		<td>${phone}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Number" name = "edit"></td></tr>
+	</table>
+	<br>
+	<table>
+		<tr>
+  			<td>Street Address: </td>
+  			<td>${addr}</td>
+  		</tr>
+  		<tr>
+  			<td>Street Address 2: </td>
+  			<td>${addr2}</td>
+  		</tr>
+  		<tr>
+  			<td>City: </td>
+  			<td>${uCity}</td>
+  		</tr>
+  		<tr>
+  			<td>State: </td>
+  			<td>${uState}</td>
+  		</tr>
+  		<tr>
+  			<td>Zip: </td>
+  			<td>${uZip}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Address" name="edit"></td></tr>
+	</table>
+</form>
 </div>
 
 <div id="footer">

@@ -37,6 +37,8 @@ public class EmpEditSubSrvlt extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String s = (String)request.getParameter("sub");
+		String err = "";
+		boolean valid = true;
 		if(s.equals("Cancel")){
 			request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
 		}
@@ -47,34 +49,34 @@ public class EmpEditSubSrvlt extends HttpServlet {
 				String newConfirm = (String)request.getParameter("confirm");
 				String newEmail = ((String)request.getParameter("em")).trim();
 				if(!newPass.equals(newConfirm)||newPass.length()>16||newPass.length()<8){
-					request.setAttribute("errorMsg", "Invalid password.");
-					request.getRequestDispatcher("/EmployeeEdit.jsp").forward(request, response);
+					err+="Invalid password.<br>";
+					valid=false;
 				}	
+				if(newUName.contains("\\s")||newUName.length()>16||newUName.length()<3){
+					err+="Invalid username.<br>";
+					valid=false;
+				}
+				if(!newEmail.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")){
+					err+="E-mail address could not be confirmed.<br>";
+					valid=false;
+				}
+				if(!valid){
+					request.setAttribute("errorMsg", err);
+					request.getRequestDispatcher("/EmployeeEdit.jsp").forward(request, response);
+				}
 				else{
-					if(newUName.contains("\\s")||newUName.length()>16||newUName.length()<3){
-						request.setAttribute("errorMsg", "Invalid username.");
-						request.getRequestDispatcher("/EmployeeEdit.jsp").forward(request, response);
-					}
-					else{
-						if(!newEmail.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")){
-							request.setAttribute("errorMsg", "E-mail address could not be confirmed. Review and try again.");
-							request.getRequestDispatcher("/EmployeeEdit.jsp").forward(request, response);
-						}
-						else{
-							user u = new user();
-							HttpSession session = request.getSession();
-							u.modUserName(newUName);
-							u.modUserPassword(newPass);
-							u.modUserEmail(newEmail);
-							session.setAttribute("hidPass", u.getHiddenPassword());
-							u.closeUser();			
-							session.setAttribute("uName", newUName);
-							session.setAttribute("pass", newPass);
-							session.setAttribute("email", newEmail);
-							request.setAttribute("msg", "Successfully modified user profile information.");
-							request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
-						}
-					}
+					user u = new user();
+					HttpSession session = request.getSession();
+					u.modUserName(newUName);
+					u.modUserPassword(newPass);
+					u.modUserEmail(newEmail);
+					session.setAttribute("hidPass", u.getHiddenPassword());
+					u.closeUser();			
+					session.setAttribute("uName", newUName);
+					session.setAttribute("pass", newPass);
+					session.setAttribute("email", newEmail);
+					request.setAttribute("msg", "Successfully modified user profile information.");
+					request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
 				}
 			}
 			else{
@@ -86,44 +88,42 @@ public class EmpEditSubSrvlt extends HttpServlet {
 					String newState = (String)request.getParameter("s");
 					String newZip = ((String)request.getParameter("z")).trim();
 					if(newComp.length()<1||newComp.length()>50){
-						request.setAttribute("errorMsg", "Please enter company name (1-50 characters).");
-						request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
+						err+="Invalid company name (50 characters maximum).<br>";
+						valid=false;
 					}	
+					if(!newAddr.matches("\\d+\\s+[a-zA-Z]+(\\s+[a-zA-Z]+)+")){
+						err+="Invalid street name.<br>";
+						valid=false;
+					}
+					if(!newCity.matches("^[a-zA-Z ]+$")){
+						err+="Invalid city name.<br>";
+						valid=false;
+					}
+					if(!newZip.matches("\\d{5}")){
+						err+="Invalid zip code (5 digits).<br>";
+						valid=false;
+					}
+					if(!valid){
+						request.setAttribute("errorMsg", err);
+						request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
+					}
 					else{
-						if(!newAddr.matches("\\d+\\s+\\w+(\\s+\\w+)+")){
-							request.setAttribute("errorMsg", "Invalid street name.");
+						user u = new user();
+						if(!u.modUserAddress(newAddr, newCity, newState, newZip)){
+							u.closeUser();
+							request.setAttribute("errorMsg", "Address could not be confirmed. Review and try again.");
 							request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
 						}
-						else{
-							if(newCity.matches("\\w+")){
-								request.setAttribute("errorMsg", "Invalid city name.");
-								request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
-							}
-							else{
-								if(!newZip.matches("\\d{5}")){
-									request.setAttribute("errorMsg", "Invalid zip code.");
-									request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
-								}
-								else{
-									user u = new user();
-									u.modCompanyName(newComp);
-									if(!u.modUserAddress(newAddr, newCity, newState, newZip)){
-										u.closeUser();
-										request.setAttribute("errorMsg", "Address could not be confirmed. Review and try again.");
-										request.getRequestDispatcher("/EmployeeEditAddress.jsp").forward(request, response);
-									}
-									u.closeUser();
-									HttpSession session = request.getSession();
-									session.setAttribute("company", newComp);
-									session.setAttribute("uAddress", newAddr);
-									session.setAttribute("uCity", newCity);
-									session.setAttribute("uState", newState);
-									session.setAttribute("uZip", newZip);
-									request.setAttribute("msg", "Successfully modified company address.");
-									request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
-								}
-							}
-						}
+						u.modCompanyName(newComp);
+						u.closeUser();
+						HttpSession session = request.getSession();
+						session.setAttribute("company", newComp);
+						session.setAttribute("uAddress", newAddr);
+						session.setAttribute("uCity", newCity);
+						session.setAttribute("uState", newState);
+						session.setAttribute("uZip", newZip);
+						request.setAttribute("msg", "Successfully modified company address.");
+						request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
 					}
 				}
 				else{
@@ -131,26 +131,28 @@ public class EmpEditSubSrvlt extends HttpServlet {
 						String newCSE = ((String)request.getParameter("cse")).trim();
 						String newCSP = ((String)request.getParameter("csp")).trim();
 						if(!newCSE.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")){
-							request.setAttribute("errorMsg", "E-mail address could not be confirmed. Review and try again.");
+							err+="E-mail address could not be confirmed.<br>";
+							valid=false;
+						}
+						newCSP = newCSP.replaceAll("\\D", "");
+						if(!newCSP.matches("\\d{10}")){
+							err+="Invalid phone number.<br>";
+							valid=false;
+						}
+						if(!valid){
+							request.setAttribute("errorMsg", err);
 							request.getRequestDispatcher("/EmployeeEditContact.jsp").forward(request, response);
 						}
 						else{
-							newCSP = newCSP.replaceAll("\\D", "");
-							if(!newCSP.matches("\\d{10}")){
-								request.setAttribute("errorMsg", "Invalid phone number.");
-								request.getRequestDispatcher("/EmployeeEditContact.jsp").forward(request, response);
-							}
-							else{
-								user u = new user();
-								u.modCSEmail(newCSE);
-								u.modCSPhone(newCSP);
-								u.closeUser();
-								HttpSession session = request.getSession();
-								session.setAttribute("csEmail", newCSE);
-					            session.setAttribute("csPhone", newCSP);
-								request.setAttribute("msg", "Successfully modified customer service contact information.");
-								request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
-							}
+							user u = new user();
+							u.modCSEmail(newCSE);
+							u.modCSPhone(newCSP);
+							u.closeUser();
+							HttpSession session = request.getSession();
+							session.setAttribute("csEmail", newCSE);
+							session.setAttribute("csPhone", newCSP);
+							request.setAttribute("msg", "Successfully modified customer service contact information.");
+							request.getRequestDispatcher("/EmployeeCenter.jsp").forward(request, response);
 						}
 					}
 					else{

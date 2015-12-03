@@ -22,7 +22,7 @@
 </div>
 
 <div><h2>Edit File Path</h2>
-${errorMsg}<br>
+<span id="error">${errorMsg}</span>
 <form action="EmpEditSubSrvlt" method="post">
 	<input type="text" name="fp" value="${path}"/><br><sup>Document Save Location</sup><br><br>
     <input type="submit" value="Submit File Path Edit" name="sub">  <input type="submit" value="Cancel" name="sub">  

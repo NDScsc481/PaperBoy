@@ -22,7 +22,7 @@
 </div>
 
 <div><h2>Edit Customer Service Info</h2>
-${errorMsg}<br>
+<span id="error">${errorMsg}</span>
 <form action="EmpEditSubSrvlt" method="post">
 	<input type="text" name="cse" value="${csEmail}"/><br><sup>Customer Service E-mail</sup><br><br>
     <input type="text" name="csp" value="${csPhone}"/><br><sup>Customer Service Phone Number (10 digits)</sup><br><br>

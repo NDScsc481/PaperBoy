@@ -22,7 +22,7 @@
 </div>
 
 <div><h2>Edit User Info</h2>
-${errorMsg}<br>
+<span id="error">${errorMsg}</span>
 <form action="EmpEditSubSrvlt" method="post">
 	<input type="text" name="name" value="${uName}"/><br><sup>Username (3-16 characters; no spaces)</sup><br><br>
     <input type="password" name="pass" value="${pass}"/><br><sup>Password (8-16 characters)</sup><br><br>
