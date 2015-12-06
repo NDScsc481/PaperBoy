@@ -1,11 +1,15 @@
 package com.nds.pkg;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import connections.print;
 
 /**
  * Servlet implementation class RoutPrintSrvlt
@@ -36,7 +40,17 @@ public class PrintSrvlt extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String s = request.getParameter("sub");
 		if(s.equals("Delivery Report")){
-			request.getRequestDispatcher("/EmployeeHome.jsp").forward(request, response);
+			String [] c = print.getDeliveryCustomers();
+			String result = "[";
+		    for(int i = 0; i < c.length; i++) {
+		        result += "\"" + c[i] + "\"";
+		        if(i < c.length - 1) {
+		            result += ", ";
+		        }
+		    }
+		    result += "]";
+			request.setAttribute("cToday", result);
+			request.getRequestDispatcher("/PrintRoute.jsp").forward(request, response);
 		}
 	}
 }

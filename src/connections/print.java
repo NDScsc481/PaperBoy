@@ -109,27 +109,39 @@ public class print {
 		}
 	}
 	
-	public static ArrayList<String> getSearchCustomers(String fN, String lN){
+	public static String [] getDeliveryCustomers(){
 		connect c = new connect();
 		ResultSet r = c.getDailyCustomerInfo(DateTime.getWeekday(), DateTime.getMonthday());
 		ArrayList<String> daysDelivery = new ArrayList<>();
+		int tempID=0;
+		String tempInfo="";
 		try{
 			while(r.next()){
-				if(r.getString("AddressLineTwo")!=null)
-					daysDelivery.add(r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
-							r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
-							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
-							r.getString("Phone"));
-				else
-					daysDelivery.add(r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
-							r.getString("Address") + "<br>" +
-							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
-							r.getString("Phone"));
-			
+				if(tempID!=r.getInt("CustomerID")){
+					if(tempInfo!=""){
+						daysDelivery.add(tempInfo);
+					}
+					tempID=r.getInt("CustomerID");
+					daysDelivery.add(r.getString("Address") + ", " + r.getString("City") + ", " + r.getString("State") + ", " + r.getString("Zip"));
+					if(r.getString("AddressLineTwo")!=null)
+						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
+								r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
+								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" + r.getString("PublicationTitle") + "<br>");
+					else
+						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
+								r.getString("Address") + "<br>" +
+								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
+				}
+				else{
+					tempInfo+="<i>" + r.getString("PublicationTitle") + "</i><br>";
+				}
 			}
+			daysDelivery.add(tempInfo);
 			r.close();
 			c.disconnect();
-			return daysDelivery;
+			String[] arr = new String[daysDelivery.size()];
+			arr = daysDelivery.toArray(arr);
+			return arr;
 		}catch(Exception e){
 			c.disconnect();
 			return null;

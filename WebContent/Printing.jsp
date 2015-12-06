@@ -24,11 +24,8 @@
 <div id="section">
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
 
-<form action="PrintSrvlt" method="get">
+<form action="PrintSrvlt" method="post">
 <input type="submit" value="Delivery Report" name="sub"><br> Print the driver's delivery list<br><br>
-</form>   
-
-<form action="PrintSrvlt" method="get">
 <input type="submit" value="Full Summary" name="sub"><br> Print today's full list of deliveries<br><br>
 </form> 
 
