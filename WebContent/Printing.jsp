@@ -5,44 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Printing Options</title>
-<head>
 
-<style>
-body {background-color: #e6c594}
-#header {
-  	position: relative;
-	width: 100%;
-	height: 130px;
-	background-image: url(http://i.imgur.com/eq7h2xU.png);
-	background-position: center;
-}
-#nav {
-    line-height:30px;
-    background-color: #bd9c7b;
-    height:550px;
-    width:200px;
-    float:left;
-    padding:20px;	      
-}
-#section {
-    width:auto;
-    height:200; 
-    float:left;
-    padding:50px;
-    overflow: auto;	 	 
-}
-#footer {
-    position: fixed;
-  	bottom: 0;
-    width: 100%;
-    background-color:black;
-    color:white;
-    clear:both;
-    text-align:center;
-   	padding:5px;	 	 
-}
-</style>
+<head>
+<link rel="stylesheet" type="text/css" href="header.css">
 </head>
+
 <body>
 <div id="header"></div>
 
@@ -57,12 +24,12 @@ body {background-color: #e6c594}
 <div id="section">
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
 
-<form action="PrintReportSrvlt" method="get">
-<input type="submit" value="Delivery Report"><br> Print the driver's delivery list<br><br>
+<form action="PrintSrvlt" method="get">
+<input type="submit" value="Delivery Report" name="sub"><br> Print the driver's delivery list<br><br>
 </form>   
 
-<form action="PrintFullSrvlt" method="get">
-<input type="submit" value="Full Summary"><br> Print today's full list of deliveries<br><br>
+<form action="PrintSrvlt" method="get">
+<input type="submit" value="Full Summary" name="sub"><br> Print today's full list of deliveries<br><br>
 </form> 
 
 </div>

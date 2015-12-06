@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RoutPrintSrvlt
  */
-@WebServlet(name = "RoutePrintSrvlt", urlPatterns = { "/RoutePrintSrvlt" })
-public class RoutPrintSrvlt extends HttpServlet {
+@WebServlet(name = "PrintSrvlt", urlPatterns = { "/PrintSrvlt" })
+public class PrintSrvlt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RoutPrintSrvlt() {
+    public PrintSrvlt() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,6 +34,9 @@ public class RoutPrintSrvlt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String s = request.getParameter("sub");
+		if(s.equals("Delivery Report")){
+			request.getRequestDispatcher("/EmployeeHome.jsp").forward(request, response);
+		}
 	}
 }

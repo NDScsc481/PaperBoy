@@ -12,14 +12,13 @@
   var directionDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
-
-  function initialize() {
+  function initialize(uLoc) {
     directionsDisplay = new google.maps.DirectionsRenderer();
     var chicago = new google.maps.LatLng(41.850033, -87.6500523);
     var myOptions = {
       zoom: 6,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: "1000 E Victoria St, Carson"
+      center: uLoc
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     directionsDisplay.setMap(map);
@@ -89,7 +88,7 @@
     	}
 </script>
 </head>
-<body onload="initialize()">
+<body onload="initialize('1000 Victoria St, Carson')">
 <div id="header"></div>
 
 <div id="nav">

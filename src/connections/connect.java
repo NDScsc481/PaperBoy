@@ -395,30 +395,6 @@ public class connect{
 	}
 	
 	/**
-	 * NEEDS TO BE SEEN!!!
-	 * 
-	 * 
-	 * 
-	 * Modifies all of the customer's information at once in the database. Returns whether the modification was successfully made.
-	 * Although it is not likely that all fields will be modified, any combination of them may be modified using this method.
-	 * Does not modify customer status.
-	 * 
-	 * @param CID		The integer that identifies the customer to be modified
-	 * @param type
-	 * @param to
-	 * @return boolean
-	 **/
-	public boolean modCustomerInfo(int CID, String type, Date to){
-		try{
-			stmt.executeUpdate("update customers set " + type + " = \"" + to + "\" where CustomerID = " + CID);
-			return true;
-		}
-		catch(Exception e){
-			return false;
-		}
-	}
-	
-	/**
 	 * Returns the customer's ID based off of the phone number (unique).
 	 * This is necessary because the customer ID is automatically generated within the database.
 	 * 
