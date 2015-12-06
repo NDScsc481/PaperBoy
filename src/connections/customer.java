@@ -14,7 +14,7 @@ public class customer {
 	private String state;
 	private String zip;
 	private String phoneNum;
-	protected int CID;
+	private int CID;
 	protected int PID;
 	protected String publicationName;
 	private String status;
@@ -63,19 +63,20 @@ public class customer {
 				firstName = r.getString("FirstName");
 				lastName = r.getString("LastName");
 				addrLineOne = r.getString("Address");
-				if ((addrLineTwo = r.getString("AddressLineTwo")).length() == 0)
-					addrLineTwo = null;
+				addrLineTwo = r.getString("AddressLineTwo");
+//				if (addrLineTwo.length() == 0)
+//					addrLineTwo = null;
 				city = r.getString("City");
 				state = r.getString("State");
 				zip = r.getString("Zip");
 				phoneNum = r.getString("Phone");
 			}
 			r.close();
-			ResultSet points = cn.getLatLngValues(ID);
-			while(points.next()){
-				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
-			}
-			points.close();
+//			ResultSet points = cn.getLatLngValues(ID);
+//			while(points.next()){
+//				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
+//			}
+//			points.close();
 		}catch (Exception e){
 			CID = 0;
 		}

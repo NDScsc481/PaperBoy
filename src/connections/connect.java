@@ -349,7 +349,7 @@ public class connect{
 	 */
 	public ResultSet getDailyCustomerInfo(int wk, int mn){
 		try{
-			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by CID");
+			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by CustomerID, Address");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -385,30 +385,6 @@ public class connect{
 	 * @param to	The string that the specified information will be modified to
 	 **/
 	public boolean modCustomerInfo(int CID, String type, String to){
-		try{
-			stmt.executeUpdate("update customers set " + type + " = \"" + to + "\" where CustomerID = " + CID);
-			return true;
-		}
-		catch(Exception e){
-			return false;
-		}
-	}
-	
-	/**
-	 * NEEDS TO BE SEEN!!!
-	 * 
-	 * 
-	 * 
-	 * Modifies all of the customer's information at once in the database. Returns whether the modification was successfully made.
-	 * Although it is not likely that all fields will be modified, any combination of them may be modified using this method.
-	 * Does not modify customer status.
-	 * 
-	 * @param CID		The integer that identifies the customer to be modified
-	 * @param type
-	 * @param to
-	 * @return boolean
-	 **/
-	public boolean modCustomerInfo(int CID, String type, Date to){
 		try{
 			stmt.executeUpdate("update customers set " + type + " = \"" + to + "\" where CustomerID = " + CID);
 			return true;

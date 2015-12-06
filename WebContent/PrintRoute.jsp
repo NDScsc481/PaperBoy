@@ -12,14 +12,18 @@
   var directionDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
-
+  var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
+  var cList = ${cToday};
+  var pinColor = "FE7569";
+  
   function initialize() {
-    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
     var chicago = new google.maps.LatLng(41.850033, -87.6500523);
     var myOptions = {
       zoom: 6,
+      scrollwheel: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: "1000 E Victoria St, Carson"
+      center: uLoc
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     directionsDisplay.setMap(map);
@@ -27,37 +31,56 @@
   }
   
   function calcRoute() {
-
+	var addressList = [];
+	var infoList = []
+	for(var i=0;i<cList.length;i++){
+		addressList.push({location: cList[i], stopover:true});
+ 		cList.splice(i, 1);
+	}
     var request = {
-        // from: Blackpool to: Preston to: Blackburn
-        origin: "1000 Victoria St, Carson", 
-        destination: "1000 Victoria St, Carson", 
-        waypoints: [{
-         	location: "17700 Avalon Blvd, Carson",
-          	stopover:true}, {
-        	location: "19200 S Main St, Gardena",
-        	stopover:true}, {
-            location: "20700 Avalon Blvd, Carson",
-            stopover:true}, {
-            location: "20945 Wilmington Ave, Carson",
-            stopover:true}],
+        origin: uLoc, 
+        destination: uLoc, 
+        waypoints: addressList,
         optimizeWaypoints: true,
         travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
+
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
         var route = response.routes[0];
+        var order = response.routes[0].waypoint_order;
+        var tempMkr;
         var summaryPanel = document.getElementById("directions_panel");
         summaryPanel.innerHTML = "";
         // For each route, display summary information.
-        for (var i = 0; i < route.legs.length; i++) {
-          var routeSegment = i + 1;
-          summaryPanel.innerHTML += "<b>Route Segment: " + routeSegment + "</b><br />";
-          summaryPanel.innerHTML += route.legs[i].start_address + " to ";
-          summaryPanel.innerHTML += route.legs[i].end_address + "<br />";
-          summaryPanel.innerHTML += route.legs[i].distance.text + "<br /><br />";
+        for (var i = 0; i < order.length; i++) {
+        	var stopNum = i + 1;
+      		new google.maps.Marker({
+       			position: route.legs[stopNum].start_location,
+       	    	map: map, 
+       	    	label: {
+       	    		text: String(stopNum),
+       	    		fontWeight: 'bold'
+       	    	}
+       	  	});	
+          	summaryPanel.innerHTML += "<b>" + stopNum + ":</b>" + cList[order[i]] + "<br /><br />";
         }
+        new google.maps.Marker({
+				position: route.legs[0].start_location,
+	    		map: map,
+	    		label: {
+       	    		text: 'H',
+       	    		fontWeight: 'bold'
+       	    	},
+	    		icon: {
+	    		      path: google.maps.SymbolPath.CIRCLE,
+	    		      scale: 12,
+	    		      strokeWeight: 1,
+	    		      fillOpacity: 1,
+	    		      fillColor: 'GREEN'
+	    		    }
+	  		});
         computeTotalDistance(response);
       } else {
         alert("directions response "+status);
