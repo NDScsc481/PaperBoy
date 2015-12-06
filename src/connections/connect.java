@@ -347,9 +347,9 @@ public class connect{
 	 * @param mn	The current day of the month starting at 1
 	 * @return ResultSet
 	 */
-	public ResultSet getSummaryCustomerInfo(int wk, int mn){
+	public ResultSet getDailyCustomerInfo(int wk, int mn){
 		try{
-			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by Frequency");
+			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by CID");
 		}
 		catch(Exception e){
 			e.printStackTrace();

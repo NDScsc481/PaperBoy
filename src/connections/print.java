@@ -1,10 +1,11 @@
 package connections;
 import java.io.*;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.nio.file.*;
 
 public class print {
-	private connect cn;
+	private connect cn = new connect();
 	private user u;
 	private String filePath;
 	private String billFilePath;
@@ -13,8 +14,7 @@ public class print {
 	private String today;
 	//daily summary: 
 	//daily route: list customer with address,
-	public print(connect con){
-		cn = con;
+	public print(){
 		u = new user();
 		header = String.format("%s%n%s%n%s%n%s%n%n",
 				u.getCompanyName(), u.getAddress(),
@@ -106,6 +106,33 @@ public class print {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<String> getSearchCustomers(String fN, String lN){
+		connect c = new connect();
+		ResultSet r = c.getDailyCustomerInfo(DateTime.getWeekday(), DateTime.getMonthday());
+		ArrayList<String> daysDelivery = new ArrayList<>();
+		try{
+			while(r.next()){
+				if(r.getString("AddressLineTwo")!=null)
+					daysDelivery.add(r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
+							r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
+							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
+							r.getString("Phone"));
+				else
+					daysDelivery.add(r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
+							r.getString("Address") + "<br>" +
+							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
+							r.getString("Phone"));
+			
+			}
+			r.close();
+			c.disconnect();
+			return daysDelivery;
+		}catch(Exception e){
+			c.disconnect();
+			return null;
 		}
 	}
 }

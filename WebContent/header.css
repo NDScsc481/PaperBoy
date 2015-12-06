@@ -37,6 +37,10 @@ body {background-color: #e6c594}
 #error {
 	color: #ff0000;
 }
+@media print {
+    #total {page-break-after: always;}
+    #ENDBILL {page-break-after: always;}
+}
 table{
     border: 2px solid #ddb16e;
     width: 100%;
