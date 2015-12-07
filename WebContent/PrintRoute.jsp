@@ -11,36 +11,41 @@
 <script type="text/javascript">
   var directionDisplay;
   var directionsService = new google.maps.DirectionsService();
+  var geocoder = new google.maps.Geocoder();
+  var bounds = new google.maps.LatLngBounds();
   var map;
   var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
   var cList = ${cToday};
-  var pinColor = "FE7569";
-  
+  var addressList = [];
+  var infoList = [];
+  var destList = [];
+  var markerArr = [];
+	for(var i=0;i<cList.length;i++){
+		addressList.push({location: cList[i], stopover:true});
+		if(addressList.length%6==0)
+		destList.push(cList[i]);
+		cList.splice(i, 1);
+	}
+  destList.push(uLoc);
   function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
-    var chicago = new google.maps.LatLng(41.850033, -87.6500523);
     var myOptions = {
       zoom: 6,
       scrollwheel: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: uLoc
+      center: {lat: 33.8652873, lng: -118.2589841}
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+//     geocodeAddress(geocoder, map);
     directionsDisplay.setMap(map);
-    calcRoute();
+    calcRoute(0, 5);
   }
   
-  function calcRoute() {
-	var addressList = [];
-	var infoList = []
-	for(var i=0;i<cList.length;i++){
-		addressList.push({location: cList[i], stopover:true});
- 		cList.splice(i, 1);
-	}
+  function calcRoute(min, max) {
     var request = {
         origin: uLoc, 
         destination: uLoc, 
-        waypoints: addressList,
+        waypoints: addressList.slice(min, max),
         optimizeWaypoints: true,
         travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
@@ -50,7 +55,6 @@
         directionsDisplay.setDirections(response);
         var route = response.routes[0];
         var order = response.routes[0].waypoint_order;
-        var tempMkr;
         var summaryPanel = document.getElementById("directions_panel");
         summaryPanel.innerHTML = "";
         // For each route, display summary information.

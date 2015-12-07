@@ -1,27 +1,31 @@
-//package connections;
-//
-//
-//import java.sql.*;
-//import java.util.LinkedList;
-//import java.util.Calendar;
-//import java.util.Date;
-//import java.time.Instant;
-//import java.time.LocalDate; 
-//import java.time.LocalDateTime;
-//import java.util.GregorianCalendar;
-//import java.time.ZoneId;
-//import java.time.format.DateTimeFormatter;
-//import java.text.SimpleDateFormat;
-//
-//
-//public class Main {
-//
-//
-//	public static void main(String[] args) {
-//		connect cn = new connect();
-//		
-//		
-//			
+package connections;
+
+
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.Calendar;
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDate; 
+import java.time.LocalDateTime;
+import java.util.GregorianCalendar;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+
+
+public class Main {
+
+
+	public static void main(String[] args) {
+		customer c = new customer(39);
+		System.out.println(c.getFirstName());
+		c.modFirstName("Org");
+		System.out.println(c.getFirstName());
+		c.close();
+	}
+}
+			
 //	LinkedList<Integer> custList = TodaysCustomerDeliveries.generateTodaysCustDeliveries();
 //
 //	System.out.println("Sorted cust list size: ");// + sortedCustList.size());
