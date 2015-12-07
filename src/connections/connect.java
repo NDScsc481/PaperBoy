@@ -22,7 +22,7 @@ public class connect{
 	public connect(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ndsdb", "root", "12345");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/NewDB", "root", "");
 			stmt = con.createStatement();
 			stmt1 = con.createStatement();
 			stmt2 = con.createStatement();
@@ -349,7 +349,10 @@ public class connect{
 	 */
 	public ResultSet getDailyCustomerInfo(int wk, int mn){
 		try{
-			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by CID");
+			return stmt.executeQuery("select * from customerpublications where "
+					+ "(DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR "
+							+ "(DeliveryDays = " + mn + " AND Frequency = \"monthly\") "
+									+ "OR Frequency = \"daily\" order by CID");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -490,14 +493,15 @@ public class connect{
 	 * @param t		The title of the publication to search for
 	 * @return ResultSet
 	 **/
-	public ResultSet searchPublication(int PID, String t){
+	public ResultSet searchPublication(int PID, String t, String genre){
 		ResultSet rs;
 		try{
-			if(PID!=0){
+			if(PID != 0){
 				rs = stmt2.executeQuery("select * from publications where PublicationID = " + PID);
-			}
-			else{
-				rs = stmt2.executeQuery("select * from publications where PublicationName = \"" + t + "\"");
+			}else if(t.length() != 0 ){
+				rs = stmt2.executeQuery("select * from publications where PublicationName like \'%" + t + "%\'");
+			}else{
+				rs = stmt2.executeQuery("select * from publications where genre like \'%" + genre + "%\'");
 			}
 			return rs;
 		}
@@ -532,9 +536,10 @@ public class connect{
 	 * @param st	The new status of the publication
 	 * @return boolean
 	 **/
-	public boolean modPublicationInfo(int PID, String st){
+	public boolean modPublicationInfo(int PID, String type, String to){
 		try{
-			stmt.executeUpdate("update publications set Status = \"" + st + "\" where PublicationID = " + PID);
+			System.out.println("update publications set \""+ type + "\" = \"" + to + "\" where PublicationID = " + PID);
+			//stmt.executeUpdate("update publications set \""+ type + "\" = \"" + to + "\" where PublicationID = " + PID);
 			return true;
 		}
 		catch(Exception e){

@@ -50,9 +50,9 @@ public class subscriptions{
 	            SID = 0;
 	        }
 	    }
-	 public publication getPubInfo(){
-	        return new publication(cn, PID);
-	    }
+//	 public publication getPubInfo(){
+//	        return new publication(cn, PID);
+//	    }
 	
 	public static void setStartDate(Date start){
 		startDate = start ;

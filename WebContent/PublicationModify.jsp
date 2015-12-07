@@ -6,42 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Publications - Modify</title>
 <head>
-<style>
-body {background-color: #e6c594}
-#header {
-  	position: relative;
-	width: 100%;
-	height: 130px;
-	background-image: url(http://i.imgur.com/eq7h2xU.png);
-	background-position: center;
-}
-#nav {
-    line-height:30px;
-    background-color: #bd9c7b;
-    height:550px;
-    width:200px;
-    float:left;
-    padding:20px;	      
-}
-#section {
-    width:auto;
-    height:200; 
-    float:left;
-    padding:50px;
-    overflow: auto;	 	 
-}
-#footer {
-    position: fixed;
-  	bottom: 0;
-    width: 100%;
-    background-color:black;
-    color:white;
-    clear:both;
-    text-align:center;
-   	padding:5px;	 	 
-}
-</style>
+<link rel="stylesheet" type="text/css" href="header.css">
 </head>
+
 <body>
 <div id="header"></div>
 
@@ -54,9 +21,54 @@ body {background-color: #e6c594}
 </div>
 
 <div id="section">
-<h1>Modify Publications</h1>
-
+<h2>Publication Information</h2>
+<span id="message">${msg}<br></span>
+<form action="PubEditSrvlt" method="post">
+	<table>
+		<tr>
+			<td>Publication ID: </td>
+			<td>${PID}</td>
+		</tr>
+		<tr>
+			<td>Publication Name: </td>
+			<td>${pName}</td>
+		</tr>
+		<tr>
+			<td>Genre: </td>
+    		<td>${genre}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Name" name = "subm"></td></tr>
+	</table>
+	<br>
+	<table>
+		<tr>
+			<td>Price: </td>
+    		<td>${price}</td>
+  		</tr>
+  		<tr>
+			<td>Frequency: </td>
+    		<td>${frequency}</td>
+  		</tr>
+  		  <tr>
+			<td>Delivery Days: </td>
+    		<td>${ddays}</td>
+  		</tr>
+  		<tr>
+			<td>Status: </td>
+    		<td>${status}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Number" name = "subm"></td></tr>
+	</table>
+	<br>
+	<input type="submit" value="Back to search" name="subm">
+</form>
 </div>
+<script type="text/javascript">
+	function replace(){
+	
+	}
+
+</script>
 
 <div id="footer">
 Copyright © Team One - CSC 481
