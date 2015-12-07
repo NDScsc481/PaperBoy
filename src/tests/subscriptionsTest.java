@@ -9,42 +9,25 @@ import connections.*;
 
 
 public class subscriptionsTest {
-	public static int testPubID;
-	public static int testCustID;
-	public static int testSubID;
+	private static int testPubID;
+	private static int testCustID;
+	private static int testSubID;
+	private static subscriptions testSub;
+	private static customer testCust;
+	private static publication testPub;
 
 	public static connect con = new connect();
-	public static Statement stmt;
+	private static Statement stmt;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		con.addCustomer("Buddy","Bear", "1520 Garnet Ave", "", "San Diego", "CA", "92109", "4766666656");
-    	con.addPublication("Runner Magazine","Sports", 9.80, "Monthly", 5);
-
-       	ResultSet r = con.searchCustomer(0, "Buddy", "");
-   			try{
-    			while(r.next()){
-    				testCustID = r.getInt("CustomerID");
-
-    				}
-       			r.close();
-
-    			}
-   			catch(Exception e){
-    	 			e.printStackTrace();
-    			}
-	
-   	       	ResultSet rs = con.searchPublication(0, "Runner Magazine");
-
-   			try{
-    			while(rs.next()){
-    				testPubID = rs.getInt("PublicationID");    				
-
-    				}
-    			}catch(Exception e){
-    	 			e.printStackTrace();
-    			}
-   			subscriptions newSub = new subscriptions(con, testCustID, testPubID);
+    	testPub = new publication( "Runner Magazine","Sports", 9.80, "Monthly", 5);
+		testPubID = testPub.getPID();
+		testCust = new customer("Buddy","Bear", "1520 Garnet Ave", "#17", "San Diego", "CA", "92109", "4766666656");
+		testCustID = con.getCustomerID("4766666656");
+       	
+   		subscriptions testSub = new subscriptions(con, testCustID, testPubID);
+   		testSubID = testSub.getSID();
 	}
 	@Test
 	public void addSubcriptionTest(){
@@ -52,6 +35,19 @@ public class subscriptionsTest {
 		assertNotNull(r);
 
 	}
+	@Test
+	public void searchBySIDTest(){
+		subscriptions aSub = new subscriptions(con,testSubID);
+		publication aPub = aSub.getPubInfo();
+		assertEquals(testPub.getTitle(), aPub.getTitle());
+	}
+	@AfterClass
+    public static void oneTimeTearDown() {
+        con.deleteColumn("customers",testCustID);
+        con.deleteColumn("publications",testPubID);
+
+    }
+}
 	
 
-}
+

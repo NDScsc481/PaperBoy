@@ -15,7 +15,7 @@ public class publicationsTests {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		testPub = new publication(con, "Runner Magazine","Sports", 9.80, "Monthly", 5);
+		testPub = new publication( "Runner Magazine","Sports", 9.80, "Monthly", 5);
 		testPubID = testPub.getPID();
     }
 	@Test

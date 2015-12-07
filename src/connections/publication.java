@@ -35,13 +35,10 @@ public class publication {
 		dayNum = dNum;
 	}
 	
-<<<<<<< HEAD
+
 	public publication(connect con, int ID){
 
 		cn = con;
-=======
-	public publication(int ID){
->>>>>>> master
 		ResultSet r = cn.searchPublication(ID, "");
 
 		try{
@@ -96,7 +93,7 @@ public class publication {
 	    public String getBillTitle(){
 	        return title + " - " +frequency;
 	    }
-<<<<<<< HEAD
+
 	  public int getPID(){
 		  return PID;
 	  }
@@ -104,12 +101,12 @@ public class publication {
 		  return title;
 	  }
 	
-=======
+
 
 	public void close(){
 		cn.disconnect();
 	}
->>>>>>> master
+
 }
 //public static String getNextIssueDate(String issuedDate, String freq){
 //

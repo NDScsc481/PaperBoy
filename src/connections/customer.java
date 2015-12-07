@@ -15,10 +15,7 @@ public class customer {
 	private String zip;
 	private String phoneNum;
 	private int CID;
-<<<<<<< HEAD
-=======
-	protected int PID;
->>>>>>> master
+	private int PID;
 	protected String publicationName;
 	private String status;
 	private LatLng myPoints;
@@ -72,27 +69,16 @@ public class customer {
 				lastName = r.getString("LastName");
 				addrLineOne = r.getString("Address");
 				addrLineTwo = r.getString("AddressLineTwo");
-<<<<<<< HEAD
-				
-=======
-//				if (addrLineTwo.length() == 0)
-//					addrLineTwo = null;
->>>>>>> master
 				city = r.getString("City");
 				state = r.getString("State");
 				zip = r.getString("Zip");
 				phoneNum = r.getString("Phone");
 			}
-<<<<<<< HEAD
-		//r.close();
-=======
+
+	
+
 			r.close();
-//			ResultSet points = cn.getLatLngValues(ID);
-//			while(points.next()){
-//				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
-//			}
-//			points.close();
->>>>>>> master
+
 		}catch (Exception e){
 			CID = 0;
 		}

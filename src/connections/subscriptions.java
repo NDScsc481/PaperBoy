@@ -14,8 +14,8 @@ public class subscriptions{
 	private int PID;
 	 String stDate;
 	    String endDt;
-	protected static Date startDate;
-	protected static Date endDate;
+	private static Date startDate;
+	private static Date endDate;
 	NumberFormat fmatr = new DecimalFormat("#0.00"); 
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");	
     private connect cn;
@@ -53,7 +53,9 @@ public class subscriptions{
 	 public publication getPubInfo(){
 	        return new publication(cn, PID);
 	    }
-	
+	public int getSID(){
+		return SID;
+	}
 	public static void setStartDate(Date start){
 		startDate = start ;
 	}
