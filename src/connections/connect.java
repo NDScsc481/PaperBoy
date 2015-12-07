@@ -12,8 +12,6 @@ public class connect{
 	//private static final String computeLatLng = null;
 	private Connection con;
 	private Statement stmt;
-	private Statement stmt1;
-	private Statement stmt2;
 	
 	/**
 	 * Constructor for the connection.
@@ -22,10 +20,8 @@ public class connect{
 	public connect(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ndsdb", "root", "12345");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3308/saturdays_db", "root", "12345");
 			stmt = con.createStatement();
-			stmt1 = con.createStatement();
-			stmt2 = con.createStatement();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -49,12 +45,15 @@ public class connect{
 	 * @param start	The date that the subscription began on.
 	 * @param end	The date that the subscription is to end on.
 	 */
-	public void addSubscriptions(int CID, int PID,String start ,String end){
+	public boolean addSubscriptions(int CID, int PID,String start ,String end){
 		try{
 			stmt.executeUpdate("insert into SUBSCRIPTIONS (CustomerID, PublicationID, StartDate, EndDate) values (\"" + CID + "\",\"" + PID+"\",  \"" + start+ "\", \"" + end + "\")");
+			return true;
 		}
+		
 		catch(Exception e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -99,11 +98,18 @@ public class connect{
 	 * @return ResultSet
 	 * 
 	 * @param CID	The int that identifies the customer who the caller would like to get the subscription information for
+	 * @param PID   The int that identifies a single subscription of a customers to a publication
 	 **/
-	public ResultSet getSubscriptions(int CID){
+	public ResultSet getSubscriptions(int CID, int PID){
 		ResultSet subs;
 		try{
-			subs = stmt.executeQuery("select * from subscriptions where CustomerID = " + CID);
+			if(PID== 0){
+				subs = stmt.executeQuery("select * from subscriptions where CustomerID = " + CID);
+			}
+			else{
+				subs = stmt.executeQuery("select * from subscriptions where CustomerID = " + CID + " AND PublicationID = " + PID);
+
+			}
 			return subs;
 		}
 		catch(Exception e){
@@ -114,7 +120,7 @@ public class connect{
 	public ResultSet getOneSubscription(int SID){
 		ResultSet rs;
 		try{
-			rs = stmt2.executeQuery("select * from subscriptions where ItemID = " + SID);
+			rs = stmt.executeQuery("select * from subscriptions where ItemID = " + SID);
 			return rs;
 		}
 		catch(Exception e){
@@ -135,20 +141,24 @@ public class connect{
 	 * @param st		The customer's state
 	 * @param z			The customer's zip code
 	 **/
-	public void addCustomer(String fN, String lN,  String addLn1, String addLn2, String c, String st, String z,String pN){
+	public boolean addCustomer(String fN, String lN,  String addLn1, String addLn2, String c, String st, String z,String pN){
 		String add;
 		try{
 			if(addLn2.length()>0){
 				add = "insert into CUSTOMERS (FirstName, LastName, Address, AddressLineTwo, City, State, Zip, Phone)" + " values (\"" + fN + "\", \"" + lN + "\", \"" + addLn1 +  "\", \"" + addLn2 + "\", \"" + c + "\", \"" + st + "\", \"" + z + "\", \"" + pN +"\")";
+				
 			}
+			
 			else{
 				add = "insert into CUSTOMERS (FirstName, LastName, Address, City, State, Zip, Phone)" + " values (\"" + fN + "\", \"" + lN + "\", \"" + addLn1 +  "\", \"" + c + "\", \"" + st + "\", \"" + z + "\", \"" + pN +"\")";
 			}
 			System.out.println(add);
 			stmt.executeUpdate(add);
-			
+			return true;
 		}
-		catch(Exception e){}
+		catch(Exception e){
+			return false;
+		}
 	}
 	
 	/**
@@ -387,6 +397,8 @@ public class connect{
 	public boolean modCustomerInfo(int CID, String type, String to){
 		try{
 			stmt.executeUpdate("update customers set " + type + " = \"" + to + "\" where CustomerID = " + CID);
+			System.out.println("CID: " + CID + ", type: " + type );
+
 			return true;
 		}
 		catch(Exception e){
@@ -395,6 +407,34 @@ public class connect{
 	}
 	
 	/**
+<<<<<<< HEAD
+	 * NEEDS TO BE SEEN!!!
+	 * 
+	 * 
+	 * 
+	 * Modifies all of the customer's information at once in the database. Returns whether the modification was successfully made.
+	 * Although it is not likely that all fields will be modified, any combination of them may be modified using this method.
+	 * Does not modify customer status.
+	 * 
+	 * @param CID		The integer that identifies the customer to be modified
+	 * @param type
+	 * @param to
+	 * @return boolean
+	 **/
+	public boolean modCustomerInfo(int CID, String type, Date to){
+		try{
+			stmt.executeUpdate("update customers set " + type + " = \"" + to + "\" where CustomerID = " + CID);
+			System.out.println("CID: " + CID + ", type: " + type );
+			return true;
+		}
+		catch(Exception e){
+			return false;
+		}
+	}
+	
+	/**
+=======
+>>>>>>> master
 	 * Returns the customer's ID based off of the phone number (unique).
 	 * This is necessary because the customer ID is automatically generated within the database.
 	 * 
@@ -429,7 +469,6 @@ public class connect{
 			stmt.executeUpdate("insert into publications (PublicationName, Genre, Price, Frequency, DeliveryDays) values (\"" + title + "\", \"" + genre + "\", \"" + price + "\", \"" + frequency + "\", " + day + ")");
 		}
 		catch(Exception e){
-			System.out.println("error in adding pub");
 			e.printStackTrace();
 
 			
@@ -444,12 +483,17 @@ public class connect{
 	 * @return int
 	 **/
 	public int getPublicationID(String t){
+
+		int pid = 0;
 		try{
 			ResultSet rs = stmt.executeQuery("select * from publications where PublicationName = \"" + t + "\"");
 			if(rs.next()){
-				return rs.getInt("PublicationID");
+				pid =rs.getInt("PublicationID");
+
+				return pid;
 			}
-			return 0;
+			return pid;
+			
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -470,10 +514,10 @@ public class connect{
 		ResultSet rs;
 		try{
 			if(PID!=0){
-				rs = stmt2.executeQuery("select * from publications where PublicationID = " + PID);
+				rs = stmt.executeQuery("select * from publications where PublicationID = " + PID);
 			}
 			else{
-				rs = stmt2.executeQuery("select * from publications where PublicationName = \"" + t + "\"");
+				rs = stmt.executeQuery("select * from publications where PublicationName = \"" + t + "\"");
 			}
 			return rs;
 		}
@@ -630,11 +674,27 @@ public class connect{
 	public void disconnect(){
 		try{
 			stmt.close();
-			stmt1.close();
-			stmt2.close();
 			con.close();
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	public void deleteColumn(String tableName, int ID){
+		try{
+			if(tableName == "publications"){
+	    		stmt.executeUpdate( "DELETE from publications where PublicationID = \""+ ID + "\"");
+			}
+			else if( tableName == "customers"){
+	    		stmt.executeUpdate( "DELETE from customers where CustomerID = \""+ ID + "\"");
+			}else if(tableName == "subscriptions"){
+	    		stmt.executeUpdate( "DELETE from subscriptions where ItemID = \""+ ID + "\"");
+			}else{
+	    		stmt.executeUpdate( "DELETE from userprofile where UserID = \""+ ID + "\"");
+
+			}
+    	}catch(Exception e){
+ 			e.printStackTrace();
+ 			System.out.println("in delete");
 		}
 	}
 }
