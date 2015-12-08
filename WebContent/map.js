@@ -1,42 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Google Maps JavaScript API v3 Example: Directions Waypoints</title>
-<style>
-    #map{
-    width: 500px;
-    height: 500px;
-}
-</style>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript">
-      function yolo() {
+	function yolo() {
 		var stops=${cToday};
 		var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
-// 		var perD = ${numD};
-// 		var breakIndex = [];
-// 		var total = stops.length();
-// 		var a = 0;
-// 		var b = 0;
-// 		while(a<total){
-// 			if(b==perD){
-// 				stops.splice(a, 0, uLoc);
-// 				total++;
-// 				breakIndex.push(a);
-// 				b=0;
-// 			}
-// 			b++;
-// 			a++;
-// 		}
-// 		stops.push(uLoc);
-// 		stops.unshift(uLoc);
-
+		stops.push(uLoc);
+		stops.unshift(uLoc);
+		var ord = [];
+		var ordOffset=0;
     	var map = new window.google.maps.Map(document.getElementById("map"));
+    	var map2 = new window.google.maps.Map(document.getElementById("map"));
 
     // new up complex objects before passing them around
     var directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
@@ -81,9 +51,6 @@ function Tour_startUp(stops) {
 */
         },
         calcRoute: function (directionsService, directionsDisplay) {
-        	var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
-    		stops.push(uLoc);
-    		stops.unshift(uLoc);
             var batches = [];
             var itemsPerBatch = 10; // google API max = 10 - 1 start, 1 stop, and 8 waypoints
             var itemsCounter = 0;
@@ -99,9 +66,8 @@ function Tour_startUp(stops) {
                         location: stops[j],
                         stopover: true
                     });
-                    if (subitemsCounter == itemsPerBatch){
+                    if (subitemsCounter == itemsPerBatch)
                         break;
-                    }
                 }
                 itemsCounter += subitemsCounter;
                 batches.push(subBatch);
@@ -166,9 +132,8 @@ function Tour_startUp(stops) {
                                         }
                                     }
                                 }
-                                //directionsDisplay.setDirections(combinedResults);
+                                directionsDisplay.setDirections(combinedResults);
                                 var legs = combinedResults.routes[0].legs;
-                                directionsDisplay.getMap().setCenter(legs[legs.length-1].end_location);
                                 var oreo = combinedResults.routes[0].waypoint_order;
                                	var toMult = 0;
                                 for(var i=0;i<oreo.length;i++){
@@ -310,16 +275,3 @@ function createMarker(map, latlng, label, html, color) {
         });
     return marker;
 }
-    </script>
-  </head>
-  <body onload="yolo()">
-  <div id="map"></div>
-  <div id="location_list" style="margin:5px;"></div>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-162157-1";
-urchinTracker();
-</script>
-</body>
-</html>

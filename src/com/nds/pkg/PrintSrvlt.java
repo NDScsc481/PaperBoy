@@ -40,6 +40,7 @@ public class PrintSrvlt extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String s = request.getParameter("sub");
 		if(s.equals("Delivery Report")){
+			int num = Integer.parseInt(request.getParameter("numDriver"));
 			String [] c = print.getDeliveryCustomers();
 			String result = "[";
 		    for(int i = 0; i < c.length; i+=2) {
@@ -57,6 +58,8 @@ public class PrintSrvlt extends HttpServlet {
 		        }
 		    }
 		    result1 += "]";
+		    int numPerD = (c.length/2)/num;
+		    request.setAttribute("numD", numPerD);
 			request.setAttribute("cToday", result);
 			request.setAttribute("cInfo", result1);
 			request.getRequestDispatcher("/MapTest.jsp").forward(request, response);

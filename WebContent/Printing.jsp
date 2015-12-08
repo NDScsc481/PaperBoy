@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,10 +26,10 @@
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
 
 <form action="PrintSrvlt" method="post">
-<input type="submit" value="Delivery Report" name="sub"><br> Print the driver's delivery list<br><br>
+<input type="number" value="1" name="numDriver">
+<input type="submit" value="Delivery Report" name="sub"><br>How many drivers today?<br><br>
 <input type="submit" value="Full Summary" name="sub"><br> Print today's full list of deliveries<br><br>
 </form> 
-
 </div>
 
 <div id="footer">
