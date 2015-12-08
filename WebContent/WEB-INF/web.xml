@@ -13,7 +13,7 @@
     <description></description>
     <display-name>CustAdd</display-name>
     <servlet-name>CustAdd</servlet-name>
-    <servlet-class>com.nds.pkg.CustAdd</servlet-class>
+    <servlet-class>com.nds.pkg.CustAddSrvlt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CustAdd</servlet-name>

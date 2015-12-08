@@ -15,10 +15,6 @@ public class customer {
 	private String zip;
 	private String phoneNum;
 	private int CID;
-<<<<<<< HEAD
-=======
-	protected int PID;
->>>>>>> master
 	protected String publicationName;
 	private String status;
 	private LatLng myPoints;
@@ -39,6 +35,8 @@ public class customer {
 		state = st;
 		zip = z;
 		phoneNum = pN;
+		int pid = cn.getPublicationID("Bill");
+		subcriptions billSub = subscription(cn, CID, pid);
 	}
 
 	// create new customer AddTypeTwo
@@ -55,12 +53,13 @@ public class customer {
 		state = st;
 		zip = z;
 		phoneNum = pN;
+		int pid = cn.getPublicationID("Bill");
+		subcriptions billSub = subscription(cn, CID, pid);
 	}
 	
 	// select customer with specified customer ID
 	public customer(int ID) {
 		ResultSet r = cn.searchCustomer(ID, "", "");
-		System.out.println("r:" + r);
 		try {
 			while (r.next()) {
 				CID = r.getInt("CustomerID");
@@ -72,27 +71,15 @@ public class customer {
 				lastName = r.getString("LastName");
 				addrLineOne = r.getString("Address");
 				addrLineTwo = r.getString("AddressLineTwo");
-<<<<<<< HEAD
-				
-=======
-//				if (addrLineTwo.length() == 0)
-//					addrLineTwo = null;
->>>>>>> master
+
 				city = r.getString("City");
 				state = r.getString("State");
 				zip = r.getString("Zip");
 				phoneNum = r.getString("Phone");
 			}
-<<<<<<< HEAD
-		//r.close();
-=======
+
 			r.close();
-//			ResultSet points = cn.getLatLngValues(ID);
-//			while(points.next()){
-//				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
-//			}
-//			points.close();
->>>>>>> master
+
 		}catch (Exception e){
 			CID = 0;
 		}
