@@ -32,7 +32,7 @@
   
   function calcRoute() {
 	var addressList = [];
-	var infoList = []
+	var infoList = [];
 	for(var i=0;i<cList.length;i++){
 		addressList.push({location: cList[i], stopover:true});
  		cList.splice(i, 1);
@@ -44,7 +44,6 @@
         optimizeWaypoints: true,
         travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
-
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
@@ -87,7 +86,6 @@
       }
     });
   }
-
       function computeTotalDistance(result) {
       var totalDist = 0;
       var totalTime = 0;
@@ -103,11 +101,8 @@
       function printDiv(divName) {
     	     var printContents = document.getElementById(divName).innerHTML;
     	     var originalContents = document.body.innerHTML;
-
     	     document.body.innerHTML = printContents;
-
     	     window.print();
-
     	     document.body.innerHTML = originalContents;
     	}
 </script>

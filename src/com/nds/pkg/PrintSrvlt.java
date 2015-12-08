@@ -42,15 +42,24 @@ public class PrintSrvlt extends HttpServlet {
 		if(s.equals("Delivery Report")){
 			String [] c = print.getDeliveryCustomers();
 			String result = "[";
-		    for(int i = 0; i < c.length; i++) {
+		    for(int i = 0; i < c.length; i+=2) {
 		        result += "\"" + c[i] + "\"";
 		        if(i < c.length - 1) {
 		            result += ", ";
 		        }
 		    }
 		    result += "]";
+		    String result1 = "[";
+		    for(int i = 1; i < c.length; i+=2) {
+		        result1 += "\"" + c[i] + "\"";
+		        if(i < c.length - 1) {
+		            result1 += ", ";
+		        }
+		    }
+		    result1 += "]";
 			request.setAttribute("cToday", result);
-			request.getRequestDispatcher("/PrintRoute.jsp").forward(request, response);
+			request.setAttribute("cInfo", result1);
+			request.getRequestDispatcher("/MapTest.jsp").forward(request, response);
 		}
 	}
 }
