@@ -11,50 +11,45 @@
 <script type="text/javascript">
   var directionDisplay;
   var directionsService = new google.maps.DirectionsService();
-  var geocoder = new google.maps.Geocoder();
-  var bounds = new google.maps.LatLngBounds();
   var map;
   var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
   var cList = ${cToday};
-  var addressList = [];
-  var infoList = [];
-  var destList = [];
-  var markerArr = [];
-	for(var i=0;i<cList.length;i++){
-		addressList.push({location: cList[i], stopover:true});
-		if(addressList.length%6==0)
-		destList.push(cList[i]);
-		cList.splice(i, 1);
-	}
-  destList.push(uLoc);
+  var pinColor = "FE7569";
+  
   function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+    var chicago = new google.maps.LatLng(41.850033, -87.6500523);
     var myOptions = {
       zoom: 6,
       scrollwheel: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: {lat: 33.8652873, lng: -118.2589841}
+      center: uLoc
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-//     geocodeAddress(geocoder, map);
     directionsDisplay.setMap(map);
-    calcRoute(0, 5);
+    calcRoute();
   }
   
-  function calcRoute(min, max) {
+  function calcRoute() {
+	var addressList = [];
+	var infoList = [];
+	for(var i=0;i<cList.length;i++){
+		addressList.push({location: cList[i], stopover:true});
+ 		cList.splice(i, 1);
+	}
     var request = {
         origin: uLoc, 
         destination: uLoc, 
-        waypoints: addressList.slice(min, max),
+        waypoints: addressList,
         optimizeWaypoints: true,
         travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
-
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
         var route = response.routes[0];
         var order = response.routes[0].waypoint_order;
+        var tempMkr;
         var summaryPanel = document.getElementById("directions_panel");
         summaryPanel.innerHTML = "";
         // For each route, display summary information.
@@ -91,7 +86,6 @@
       }
     });
   }
-
       function computeTotalDistance(result) {
       var totalDist = 0;
       var totalTime = 0;
@@ -107,11 +101,8 @@
       function printDiv(divName) {
     	     var printContents = document.getElementById(divName).innerHTML;
     	     var originalContents = document.body.innerHTML;
-
     	     document.body.innerHTML = printContents;
-
     	     window.print();
-
     	     document.body.innerHTML = originalContents;
     	}
 </script>

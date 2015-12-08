@@ -170,7 +170,6 @@ public class connect{
 			System.out.println(addCoordinates);
 			stmt.executeUpdate(addCoordinates);
 			}
-			
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -349,7 +348,7 @@ public class connect{
 	 */
 	public ResultSet getDailyCustomerInfo(int wk, int mn){
 		try{
-			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by CustomerID, Address");
+			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by Latitude, Longitude, CustomerID");
 		}
 		catch(Exception e){
 			e.printStackTrace();
