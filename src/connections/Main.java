@@ -1,6 +1,5 @@
 package connections;
 
-<<<<<<< HEAD
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -78,7 +77,6 @@ public class Main {
     	 			e.printStackTrace();
     			}
    			subscriptions newSub = new subscriptions(con, testCustID, testPubID);
->>>>>>> 0d69058546323c7d5e7fb95fe1d3e68cdd9b2dd0
 	}
 }
 			
