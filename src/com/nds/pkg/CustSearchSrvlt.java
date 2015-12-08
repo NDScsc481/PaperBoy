@@ -59,7 +59,20 @@ public class CustSearchSrvlt extends HttpServlet {
 				results = customer.getSearchCustomers(names[0], names[1]);
 			String r="";
 			for(int i=0;i<results.size();i++){
-				r+=results.get(i)+"<br><br><br>";
+				String[] id = results.get(i).substring(13, 16).split("[^0-9]");
+				String[] rest = results.get(i).split("<br>");
+				System.out.println(results.get(i));
+				System.out.println(id[0]);
+				r+=results.get(i)
+						+"<form action=\"CustEditSrvlt\" method=\"post\"> "
+						+ " <input type=\"hidden\" name=\"cid\" value=\""+ id[0] + "\">"
+						+ " <input type=\"hidden\" name=\"CustomerName\" value=\"" + rest[1] + "\">"
+						+ " <input type=\"hidden\" name=\"Address\" value=\"" + rest[2] + "\">"
+						+ " <input type=\"hidden\" name=\"City\" value=\"" + rest[3] + "\">"
+						+ " <input type=\"hidden\" name=\"State\" value=\"" + rest[4] + "\">"
+						+ " <input type=\"hidden\" name=\"Zip\" value=\"" + rest[5] + "\">"
+						+ " <input type=\"hidden\" name=\"Phone\" value=\"" + rest[6] + "\">"
+						+ "<input type=\"submit\" value=\"Select Customer\" name = \"subm\"></form><br><br><br>";
 			}
 			request.setAttribute("results", r);
 			request.getRequestDispatcher("/CustomerLookup.jsp").forward(request, response);

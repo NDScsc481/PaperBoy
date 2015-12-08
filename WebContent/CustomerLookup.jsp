@@ -38,8 +38,7 @@ Please Search by name and select customer with customer ID.
 <form action="CustSearchSrvlt" method="post">
     <input type="text" name="n" value="${names}"/><input type="submit" value="Submit Name" name="sub">
     <br><sup>Search by name (first and/or last name).</sup><br><br>
-    <input type="text" name="id"/><input type="submit" value="Submit ID" name="sub">
-    <br><sup>Select by customer ID.</sup>
+    
 </form>
 <span>${results}</span>
 </div>

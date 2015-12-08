@@ -32,6 +32,15 @@
 <div id="bckgrnd">
 <div id="section">
 <h1>Publication Lookup</h1>
+<span id="error">${errorMsg}</span>
+<form action="PubSearchSrvlt" method="post">
+    <input type="text" name="n" value="${names}"/><input type="submit" value="Submit Name" name="sub">
+    <br><sup>Search by name (first and/or last name).</sup><br><br>
+    <input type="text" name="g" value="${genres}"/><input type="submit" value="Submit Genre" name="sub">
+    <br><sup>Search by genre.</sup><br><br>
+</form>
+
+<span>${results}</span>
 </div>
 </div>
 

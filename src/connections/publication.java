@@ -2,15 +2,9 @@ package connections;
 
 import java.sql.ResultSet;
 import java.text.*;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.lang.Object;
-import java.util.Calendar;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
-import java.time.format.DateTimeFormatter;
-import java.text.SimpleDateFormat;
+import connections.connect;
+
+import java.util.ArrayList;
 
 public class publication {
 	private String title;
@@ -36,6 +30,7 @@ public class publication {
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public publication(connect con, int ID){
 
 		cn = con;
@@ -44,6 +39,10 @@ public class publication {
 >>>>>>> master
 		ResultSet r = cn.searchPublication(ID, "");
 
+=======
+	public publication(int ID){
+		ResultSet r = cn.searchPublication(ID, "", "");
+>>>>>>> Nathan_Branch
 		try{
 			while(r.next()){
 				PID = r.getInt("PublicationID");
@@ -72,6 +71,27 @@ public class publication {
 		price = nPrice;
 		return cn.modPublicationInfo(PID, nPrice);
 	}
+	public boolean modName(String name){
+		title = name;
+		return cn.modPublicationInfo(PID, "name", name);
+	}
+	public boolean modGenre(String newgenre){
+		genre = newgenre;
+		return cn.modPublicationInfo(PID, "genre", newgenre);
+	}
+	public boolean modFrequency(String f){
+		frequency = f;
+		return cn.modPublicationInfo(PID, "frequency", f);
+	}
+	public boolean modDeliveryDays(int day){
+		dayNum = day;
+		String dday = String.valueOf(day);
+		return cn.modPublicationInfo(PID, "Delivery Days", dday);
+	}
+	public boolean modStatus(String st){
+		status = st;
+		return cn.modPublicationInfo(PID, "Status", st);
+	}
 	/*
 	 * This function calculates the next issue date by using the date the publication was originally issued 
 	 * on (firstIssuedOn) and adding whatever increment that correlates to it (e.g. Monthly, weekly, daily)
@@ -85,11 +105,12 @@ public class publication {
 		}
 		else{
 			status = st;
-			return cn.modPublicationInfo(PID, st);
+			return cn.modPublicationInfo(PID, "status", st);
 		}
 	}
 
 	 public double getPrice(){
+<<<<<<< HEAD
 	        return price;
 	    }
 	    
@@ -110,6 +131,43 @@ public class publication {
 		cn.disconnect();
 	}
 >>>>>>> master
+=======
+		 return price;
+	 }
+
+	 public String getBillTitle(){
+		 return title + " - " +frequency;
+	 }
+
+
+	 public static ArrayList<String> getSearchPublications(String name, String genre){
+		 connect c = new connect();
+		 ResultSet r = c.searchPublication(0, name, genre);
+		 ArrayList<String> allResults = new ArrayList<>();
+		 try{
+			 while(r.next()){
+				 
+				 allResults.add("Publication ID: "+ r.getInt("PublicationID") + "<br>" +
+						 r.getString("PublicationName") + "<br>" + 
+						 r.getString("Genre") + "<br>" +
+						 r.getDouble("Price") + "<br>" +
+						 r.getString("Frequency") + "<br>" +
+						 r.getString("Status") + "<br>" +
+						 r.getString("DeliveryDays") + "<br><br>");
+			 }
+			 r.close();
+			 c.disconnect();
+			 return allResults;
+		 }catch(Exception e){
+			 c.disconnect();
+			 return null;
+		 }
+	 }
+
+	 public void close(){
+		 cn.disconnect();
+	 }
+>>>>>>> Nathan_Branch
 }
 //public static String getNextIssueDate(String issuedDate, String freq){
 //

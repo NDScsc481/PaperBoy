@@ -31,9 +31,59 @@
 
 <div id="bckgrnd">
 <div id="section">
+<<<<<<< HEAD
 <h1>Modify Publications</h1>
 </div>
+=======
+<h2>Publication Information</h2>
+<span id="message">${msg}<br></span>
+<form action="PubEditSrvlt" method="post">
+	<table>
+		<tr>
+			<td>Publication ID: </td>
+			<td>${PID}</td>
+		</tr>
+		<tr>
+			<td>Publication Name: </td>
+			<td>${pName}</td>
+		</tr>
+		<tr>
+			<td>Genre: </td>
+    		<td>${genre}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Name" name = "subm"></td></tr>
+	</table>
+	<br>
+	<table>
+		<tr>
+			<td>Price: </td>
+    		<td>${price}</td>
+  		</tr>
+  		<tr>
+			<td>Frequency: </td>
+    		<td>${frequency}</td>
+  		</tr>
+  		  <tr>
+			<td>Delivery Days: </td>
+    		<td>${ddays}</td>
+  		</tr>
+  		<tr>
+			<td>Status: </td>
+    		<td>${status}</td>
+  		</tr>
+  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Number" name = "subm"></td></tr>
+	</table>
+	<br>
+	<input type="submit" value="Back to search" name="subm">
+</form>
+>>>>>>> Nathan_Branch
 </div>
+<script type="text/javascript">
+	function replace(){
+	
+	}
+
+</script>
 
 <div id="footer">
 Copyright © Team One - CSC 481
