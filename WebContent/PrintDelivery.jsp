@@ -1,47 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Delivery Report</title>
+<title>Printing Delivery</title>
+
 <head>
-<style>
-body {background-color: #e6c594}
-#header {
-  	position: relative;
-	width: 100%;
-	height: 130px;
-	background-image: url(http://i.imgur.com/eq7h2xU.png);
-	background-position: center;
-}
-#nav {
-    line-height:30px;
-    background-color: #bd9c7b;
-    height:550px;
-    width:200px;
-    float:left;
-    padding:20px;	      
-}
-#section {
-    width:auto;
-    height:200; 
-    float:left;
-    padding:50px;
-    overflow: auto;	 	 
-}
-#footer {
-    position: fixed;
-  	bottom: 0;
-    width: 100%;
-    background-color:black;
-    color:white;
-    clear:both;
-    text-align:center;
-   	padding:5px;	 	 
-}
-</style>
+<link rel="stylesheet" type="text/css" href="header.css">
 </head>
+
 <body>
 <div id="header"></div>
 
@@ -54,8 +23,12 @@ body {background-color: #e6c594}
 </div>
 
 <div id="section">
-<h1><font color=#9c3141 face="arial">Delivery Report</font></h1>
-${Msg}
+<h1><font color=#9c3141 face="arial">Printing</font></h1>
+<form action="PrintSrvlt" method="post">
+There are ${cLength} locations to visit today.<br>
+<input type="number" value="1" name="numDriver">
+<input type="submit" value="Delivery Report" name="sub"><br>How Many Drivers?<br><br>
+</form> 
 </div>
 
 <div id="footer">
