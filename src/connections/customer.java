@@ -240,7 +240,7 @@ public class customer {
 				else
 					allResults.add("Customer ID: "+r.getInt("CustomerID") + "<br>" + r.getString("FirstName") + " " + r.getString("LastName") + "<br>" +
 							r.getString("Address") + "<br>" +
-							r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" +
+							r.getString("City") + "<br>" + r.getString("State") + "<br>" + r.getString("Zip") + "<br>" +
 							r.getString("Phone"));
 			
 			}

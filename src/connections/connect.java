@@ -498,10 +498,12 @@ public class connect{
 		try{
 			if(PID != 0){
 				rs = stmt2.executeQuery("select * from publications where PublicationID = " + PID);
-			}else if(t.length() != 0 ){
+			}else if(t.length() != 0 && genre.length() == 0){
 				rs = stmt2.executeQuery("select * from publications where PublicationName like \'%" + t + "%\'");
-			}else{
+			}else if(genre.length() != 0 && t.length() == 0){
 				rs = stmt2.executeQuery("select * from publications where genre like \'%" + genre + "%\'");
+			}else {
+				rs = stmt2.executeQuery("select * from publications");
 			}
 			return rs;
 		}

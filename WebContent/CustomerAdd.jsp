@@ -26,7 +26,7 @@
 <span id="error">${errorMsg}<br></span>
 
 <form action="CustAddSrvlt" method="post">
-	<input type="text" name="first" value="${first}"/><br><sup>First Name</sup><p>
+	<input type="text" name="first" value="${firstName}"/><br><sup>First Name</sup><p>
     <input type="text" name="last" value="${last}"/><br><sup>Last Name</sup><p>
     <input type="text" name="p" value="${p}"/><br><sup>Phone Number</sup><p>  
     <input type="text" name="add1" value="${add1}"/><br><sup>Street Address</sup><p>

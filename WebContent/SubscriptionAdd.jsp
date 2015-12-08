@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Customer Center</title>
+<title>Add Subscription</title>
 
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
@@ -21,11 +21,16 @@
 <a href="Login.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Log Out</b></font></a><br><br>
 </div>
 
-<div id="section">
-<h1><font color=#9c3141 face="arial">Customer Center</font></h1>
-
-<a href="CustomerAdd.jsp"><b><ins>Add</ins></b></a><br> Add a customer into database<br><br>
-<a href="CustomerLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Lookup customer in database
+<div><h2>Add Subscription(s)</h2>
+<span id="error">${errorMsg}</span>
+<form action="SubAddSrvlt" method="post">
+	${firstName} ${lastName}<br>
+	<input type="hidden" name="CID" value="${CID}">
+	<input type="text" name="addid" placeholder="Add by Publication ID">
+    <input type="submit" value="Add subscription" name="add">  <input type="submit" value="Cancel" name="sub">  
+    <br><br><h1>All publications</h1><br>
+    ${results}<br>
+</form>
 </div>
 
 <div id="footer">

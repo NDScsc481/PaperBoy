@@ -99,24 +99,30 @@ public class CustAddSrvlt extends HttpServlet {
 			}
 			else{
 				customer c;
-				if(add2.length()==0)
-					c = new customer(first, last, add1, city, state, zip, phone); 
-				else
-					c = new customer(first, last, add1, add2, city, state, zip, phone); 
-				HttpSession session = request.getSession();
-				session.setAttribute("CID", c.getCID());
-				c.close();
-				session.setAttribute("firstName", first);
-	            session.setAttribute("lastName", last);
-	            session.setAttribute("addr", add1);
-	            session.setAttribute("addr2", add2);
-	            session.setAttribute("city", city);
-	            session.setAttribute("state", state);
-	            session.setAttribute("zip", zip);
-	            session.setAttribute("phone", phone);
-				request.setAttribute("msg", "Customer successfully added to the system.");
-				request.getRequestDispatcher("/CustomerEdit.jsp").forward(request, response);
-			}			
+				if(add2.length()==0){
+					//c = new customer(first, last, add1, city, state, zip, phone); 
+					HttpSession sess = request.getSession();
+					//sess.setAttribute("CID", c.getCID());
+					sess.setAttribute("CID", 1);
+					//c.close();
+					request.getRequestDispatcher("/SubAddSrvlt").forward(request, response);
+				}else{
+					//c = new customer(first, last, add1, add2, city, state, zip, phone); 
+					HttpSession session = request.getSession();
+					//session.setAttribute("CID", c.getCID());
+					//c.close();
+					session.setAttribute("CID", 1);
+					session.setAttribute("firstName", first);
+		            session.setAttribute("lastName", last);
+		            session.setAttribute("addr", add1);
+		            session.setAttribute("addr2", add2);
+		            session.setAttribute("city", city);
+		            session.setAttribute("state", state);
+		            session.setAttribute("zip", zip);
+		            session.setAttribute("phone", phone);
+					request.getRequestDispatcher("/SubAddSrvlt").forward(request, response);
+			    }	
+			}
 		}
 	}
 }

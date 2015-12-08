@@ -38,21 +38,14 @@
 			<td>Last Name: </td>
     		<td>${lastName}</td>
   		</tr>
-  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Name" name = "edit"></td></tr>
-	</table>
-	<br>
-	<table>
+
 		<tr>
 			<td>Phone Number: </td>
     		<td>${phone}</td>
   		</tr>
-  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Number" name = "edit"></td></tr>
-	</table>
-	<br>
-	<table>
 		<tr>
   			<td>Street Address: </td>
-  			<td>${addr}</td>
+  			<td>${address}</td>
   		</tr>
   		<tr>
   			<td>Street Address 2: </td>
@@ -60,18 +53,22 @@
   		</tr>
   		<tr>
   			<td>City: </td>
-  			<td>${uCity}</td>
+  			<td>${city}</td>
   		</tr>
   		<tr>
   			<td>State: </td>
-  			<td>${uState}</td>
+  			<td>${state}</td>
   		</tr>
   		<tr>
   			<td>Zip: </td>
-  			<td>${uZip}</td>
+  			<td>${zip}</td>
   		</tr>
-  		<tr><td></td><td></td><td style="text-align: right"><input type="submit" value="Edit Address" name="edit"></td></tr>
 	</table>
+	<input type="hidden" name="CID" value="${CID}">
+	<input type="hidden" name="firstName" value="${firstName}">
+	<input type="hidden" name="lastName" value="${lastName}">
+	<input type="submit" value="Edit Customer Details" name="add"><br><br>
+	<input type="submit" value="Edit Customer Subscriptions" name="add">
 </form>
 </div>
 

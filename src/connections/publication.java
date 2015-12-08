@@ -110,7 +110,6 @@ public class publication {
 		 ArrayList<String> allResults = new ArrayList<>();
 		 try{
 			 while(r.next()){
-				 String weekday;
 				 
 				 allResults.add("Publication ID: "+ r.getInt("PublicationID") + "<br>" +
 						 r.getString("PublicationName") + "<br>" + 
@@ -118,7 +117,7 @@ public class publication {
 						 r.getDouble("Price") + "<br>" +
 						 r.getString("Frequency") + "<br>" +
 						 r.getString("Status") + "<br>" +
-						 r.getString("DeliveryDays"));
+						 r.getString("DeliveryDays") + "<br><br>");
 			 }
 			 r.close();
 			 c.disconnect();

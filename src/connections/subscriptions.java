@@ -19,14 +19,15 @@ public class subscriptions{
 	NumberFormat fmatr = new DecimalFormat("#0.00"); 
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");	
     private connect cn;
-	public subscriptions(connect con,int CID, int PID){
-		cn = con;
+	public subscriptions(int CID, int PID){
+		//cn = con;
 		startDate=	DateTime.getTimeNow();
 		setStartDate(startDate);
 		endDate= DateTime.addOneYear(startDate);
 		setEndDate(endDate);
+		
 		cn.addSubscriptions(CID,PID, DateTime.dateToStr(startDate), DateTime.dateToStr(endDate));
-		SID = cn.getSubscriptionID(CID);
+		//SID = cn.getSubscriptionID(CID);
 		
 	}
 	
