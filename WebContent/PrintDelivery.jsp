@@ -9,9 +9,20 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
+<script type="text/javascript">
+var routeButtons = function() {
+	var dButton = document.getElementById("driver_buttons");
+	dButton="<form>";
+	    for (var j = 0 ; j < valueOf("${num}") ; j++) {
+
+	      dButton += "<input type='submit' value='"+ j +"' name='butt'><br>";
+	    }
+	    dButton+="</form>";
+}
+</script>
 </head>
 
-<body>
+<body >
 <div id="header"></div>
 
 <div id="nav">
@@ -24,11 +35,14 @@
 
 <div id="section">
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
+<span id="error">${errorMsg}</span>
 <form action="PrintSrvlt" method="post">
 There are ${cLength} locations to visit today.<br>
 <input type="number" value="1" name="numDriver">
 <input type="submit" value="Delivery Report" name="sub"><br>How Many Drivers?<br><br>
-</form> 
+
+</form>
+${butt}<br>
 </div>
 
 <div id="footer">

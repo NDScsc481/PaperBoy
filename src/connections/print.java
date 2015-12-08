@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.nio.file.*;
 
 public class print {
-	private connect cn = new connect();
+	private connect cn;
 	private user u;
 	private String filePath;
 	private String billFilePath;
@@ -30,10 +30,12 @@ public class print {
 			}
 		}
 		billFilePath = filePath + "/bills";
+		u.closeUser();
 	}
 	
 	//invoice number in name of text file
 	public void printAllBills(){
+		cn = new connect();
 		if(!Files.exists(Paths.get(billFilePath))){
 			try{
 				Files.createDirectories(Paths.get(billFilePath));
@@ -79,7 +81,52 @@ public class print {
 				w.close();
 			}
 			allSubs.close();
+			cn.disconnect();
 			System.out.println("Success");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<String> printBills(){
+		ArrayList<String> s = new ArrayList<String>();
+		if(!Files.exists(Paths.get(billFilePath))){
+			try{
+				Files.createDirectories(Paths.get(billFilePath));
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		billPeriod = DateTime.getBillPeriod();
+		String invoiceNum;
+		String tempInfo ="";
+		int tempID=0;
+		double totalDue;
+		try{
+			ResultSet r = cn.getBillInfo();
+			while(r.next()){
+				if(tempID!=r.getInt("CustomerID")){
+					if(tempInfo!=""){
+						s.add(tempInfo);
+					}
+					tempID=r.getInt("CustomerID");
+					s.add(r.getString("Address") + ", " + r.getString("City") + ", " + r.getString("State") + ", " + r.getString("Zip"));
+					if(r.getString("AddressLineTwo")!=null)
+						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
+								r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
+								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
+					else
+						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
+								r.getString("Address") + "<br>" +
+								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
+				}
+				else{
+					tempInfo+="<i>" + r.getString("PublicationTitle") + "</i><br>";
+				}
+			}
+			r.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -126,7 +173,7 @@ public class print {
 					if(r.getString("AddressLineTwo")!=null)
 						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
 								r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
-								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br>" + r.getString("PublicationTitle") + "<br>");
+								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
 					else
 						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
 								r.getString("Address") + "<br>" +
