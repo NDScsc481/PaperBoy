@@ -47,36 +47,35 @@ public class Main {
 	public static int testPubID;
 	public static void main(String[] args) {
 		connect con = new connect();
-		
-		con.addCustomer("Buddy","Bear", "1520 Garnet Ave", "", "San Diego", "CA", "92109", "4766666656");
-    	con.addPublication("Runner Magazine","Sports", 9.80, "Monthly", 5);
-
-       	ResultSet r = con.searchCustomer(0, "Buddy", "");
-       //	ResultSet rs = con.searchPublication(0, "Runner Magazine");
-
-   			try{
-    			while(r.next()){
-    				testCustID = r.getInt("CustomerID");
-
-    				}
-       			r.close();
-
-    			}
-   			catch(Exception e){
-    	 			e.printStackTrace();
-    			}
-	
-   	       	ResultSet rs = con.searchPublication(0, "Runner Magazine");
-
-   			try{
-    			while(rs.next()){
-    				testPubID = rs.getInt("PublicationID");    				
-
-    				}
-    			}catch(Exception e){
-    	 			e.printStackTrace();
-    			}
-   			subscriptions newSub = new subscriptions(con, testCustID, testPubID);
+		customer cust = new customer("nathan", "salas", "7712 Hillside drive", "", "san diego", "CA", "90277", "8821147796");//		con.addCustomer("Buddy","Bear", "1520 Garnet Ave", "", "San Diego", "CA", "92109", "4766666656");
+//    	con.addPublication("Runner Magazine","Sports", 9.80, "Monthly", 5);
+//
+//       	ResultSet r = con.searchCustomer(0, "Buddy", "");
+//       //	ResultSet rs = con.searchPublication(0, "Runner Magazine");
+//
+//   			try{
+//    			while(r.next()){
+//    				testCustID = r.getInt("CustomerID");
+//
+//    				}
+//       			r.close();
+//
+//    			}
+//   			catch(Exception e){
+//    	 			e.printStackTrace();
+//    			}
+//	
+//   	       	ResultSet rs = con.searchPublication(0, "Runner Magazine");
+//
+//   			try{
+//    			while(rs.next()){
+//    				testPubID = rs.getInt("PublicationID");    				
+//
+//    				}
+//    			}catch(Exception e){
+//    	 			e.printStackTrace();
+//    			}
+//   			subscriptions newSub = new subscriptions(con, testCustID, testPubID);
 	}
 }
 			

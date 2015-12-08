@@ -1,3 +1,19 @@
+Skip to content
+This repository  
+Search
+Pull requests
+Issues
+Gist
+ @adorris1
+ Unwatch 5
+  Star 0
+ Fork 0 NDScsc481/PaperBoy
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs  Settings
+Branch: mattbranch Find file Copy pathPaperBoy/WebContent/header.css
+4d841d2  8 hours ago
+ matt Major Front end changes. Header.css complete overhaul
+1 contributor
+RawBlameHistory     102 lines (94 sloc)  1.74 KB
 body { 
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 	font-family: Georgia, "Times New Roman", Times, serif;
@@ -5,7 +21,6 @@ body {
 	color: #333333; 
 	background-image: url(./images/paper.png);
 }   
-
 /**************** Pseudo classes ****************/ 
 ul {
     list-style-type: none;
@@ -14,16 +29,13 @@ ul {
     overflow: hidden;
     background-color: #333;  
 }
-
 li {
     float: left;
     border-right:1px solid #bbb;
 }
-
 li:last-child {
     border-right: none;
 }
-
 li a {
     display: block; 
     color: white;
@@ -31,15 +43,12 @@ li a {
     padding: 10px 30px;
     text-decoration: none;
 }
-
 li a:hover:not(.active) {
     background-color: #111;
 }
-
 .active {
     background-color: #bd9c7b;
 }
-
 h1 {
     margin: 10px;
 }
@@ -100,3 +109,5 @@ p.login{
     text-align:center;
    	 
 }
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help
