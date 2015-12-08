@@ -17,16 +17,15 @@ public class publication {
 	private String genre;
 	private double price;
 	private String frequency;
-	protected int PID;
+	private int PID;
 	private String status;
 	private int dayNum;
-	private connect cn;
+	private connect cn = new connect();
 	NumberFormat fmatr = new DecimalFormat("$#.##"); 
 	
-	public publication(connect con, String tit, String gen, double prc, String freq, int dNum){
-		cn= con;
+	public publication(String tit, String gen, double prc, String freq, int dNum){
 		cn.addPublication(tit, gen, prc, freq, dNum);
-		PID = cn.getPublicationID(title);
+		PID = cn.getPublicationID(tit);
 		dayNum = dNum;
 		status = "ACTIVE";
 		title = tit;
@@ -36,9 +35,15 @@ public class publication {
 		dayNum = dNum;
 	}
 	
+<<<<<<< HEAD
 	public publication(connect con, int ID){
+
 		cn = con;
+=======
+	public publication(int ID){
+>>>>>>> master
 		ResultSet r = cn.searchPublication(ID, "");
+
 		try{
 			while(r.next()){
 				PID = r.getInt("PublicationID");
@@ -48,11 +53,13 @@ public class publication {
 				frequency = r.getString("Frequency");
 				genre = r.getString("Genre");
 				dayNum = r.getInt("DeliveryDays");
+
 			}
 
 		}
 		catch(Exception e){
 			PID = 0;
+
 		}
 	}
 	
@@ -89,7 +96,20 @@ public class publication {
 	    public String getBillTitle(){
 	        return title + " - " +frequency;
 	    }
+<<<<<<< HEAD
+	  public int getPID(){
+		  return PID;
+	  }
+	  public String getTitle(){
+		  return title;
+	  }
 	
+=======
+
+	public void close(){
+		cn.disconnect();
+	}
+>>>>>>> master
 }
 //public static String getNextIssueDate(String issuedDate, String freq){
 //

@@ -1,4 +1,4 @@
-package connections;
+ package connections;
 
 
 import java.sql.*;
@@ -14,12 +14,16 @@ public class customer {
 	private String state;
 	private String zip;
 	private String phoneNum;
-	protected int CID;
+	private int CID;
+<<<<<<< HEAD
+=======
 	protected int PID;
+>>>>>>> master
 	protected String publicationName;
 	private String status;
 	private LatLng myPoints;
 	private connect cn = new connect();
+	
 
 	// create new customer AddTypeOne
 	public customer(String fN, String lN, String addLn1, String c, String st, String z, String pN) {
@@ -56,26 +60,39 @@ public class customer {
 	// select customer with specified customer ID
 	public customer(int ID) {
 		ResultSet r = cn.searchCustomer(ID, "", "");
+		System.out.println("r:" + r);
 		try {
 			while (r.next()) {
 				CID = r.getInt("CustomerID");
+				System.out.println("cust id " + CID);
 				status = r.getString("Status");
+				System.out.println("cust status " + CID);
+
 				firstName = r.getString("FirstName");
 				lastName = r.getString("LastName");
 				addrLineOne = r.getString("Address");
-				if ((addrLineTwo = r.getString("AddressLineTwo")).length() == 0)
-					addrLineTwo = null;
+				addrLineTwo = r.getString("AddressLineTwo");
+<<<<<<< HEAD
+				
+=======
+//				if (addrLineTwo.length() == 0)
+//					addrLineTwo = null;
+>>>>>>> master
 				city = r.getString("City");
 				state = r.getString("State");
 				zip = r.getString("Zip");
 				phoneNum = r.getString("Phone");
 			}
+<<<<<<< HEAD
+		//r.close();
+=======
 			r.close();
-			ResultSet points = cn.getLatLngValues(ID);
-			while(points.next()){
-				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
-			}
-			points.close();
+//			ResultSet points = cn.getLatLngValues(ID);
+//			while(points.next()){
+//				myPoints = new LatLng(points.getDouble("Latitude"), points.getDouble("Longitude"));
+//			}
+//			points.close();
+>>>>>>> master
 		}catch (Exception e){
 			CID = 0;
 		}
@@ -127,6 +144,7 @@ public class customer {
         city = c;
         state = s;
         zip = z;
+        addrLineTwo = null;
         try{
         	myPoints = computeLatLng.getLatLongPositions(z + ", " + addLn1 + " " + s);
         }catch(Exception f){
@@ -161,6 +179,9 @@ public class customer {
 			status = st;
 			return cn.modCustomerInfo(CID, "Status", st);
 		}
+	}
+	public String getStatus(){
+		return status;
 	}
 
 	public String getFirstName() {

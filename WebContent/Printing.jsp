@@ -4,11 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <title>Employee Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+=======
+<title>Printing Options</title>
+
+>>>>>>> master
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
 </head>
@@ -34,12 +39,18 @@
 
 <h1>Printing</h1>
 
+<<<<<<< HEAD
 <form action="PrintReportSrvlt" method="get">
 <input type="submit" value="Delivery Report" ><br> Print the driver's delivery list<br><br>
 </form>   
 
 <form action="PrintFullSrvlt" method="get">
 <input type="submit" value="Full Summary"><br> Print today's full list of deliveries<br><br>
+=======
+<form action="PrintSrvlt" method="post">
+<input type="submit" value="Delivery Report" name="sub"><br> Print the driver's delivery list<br><br>
+<input type="submit" value="Full Summary" name="sub"><br> Print today's full list of deliveries<br><br>
+>>>>>>> master
 </form> 
 
 </div>
