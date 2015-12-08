@@ -16,14 +16,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
       jQuery(function() {
-var stops=${cToday};
-var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
-stops.push(uLoc);
-stops.unshift(uLoc);
-var order = [];
-var orderOffset=0;
-
-    var map = new window.google.maps.Map(document.getElementById("map"));
+		var stops=${cToday};
+		var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
+		stops.push(uLoc);
+		stops.unshift(uLoc);
+		var ord = [];
+		var ordOffset=0;
+    	var map = new window.google.maps.Map(document.getElementById("map"));
 
     // new up complex objects before passing them around
     var directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
@@ -119,7 +118,7 @@ function Tour_startUp(stops) {
                 (function (kk) {
                     directionsService.route(request, function (result, status) {
                         if (status == window.google.maps.DirectionsStatus.OK) {
-                        	order = order.concat(result.routes[0].waypoint_order);
+//                          	ord[k] = result.routes[0].waypoint_order;
                             var unsortedResult = { order: kk, result: result };
                             unsortedResults.push(unsortedResult);
 
@@ -140,7 +139,7 @@ function Tour_startUp(stops) {
                                                 // directionResults object, but enough to draw a path on the map, which is all I need
                                                 combinedResults.routes[0].legs = combinedResults.routes[0].legs.concat(unsortedResults[key].result.routes[0].legs);
                                                 combinedResults.routes[0].overview_path = combinedResults.routes[0].overview_path.concat(unsortedResults[key].result.routes[0].overview_path);
-
+                                                combinedResults.routes[0].waypoint_order = combinedResults.routes[0].waypoint_order.concat(unsortedResults[key].result.routes[0].waypoint_order);
                                                 combinedResults.routes[0].bounds = combinedResults.routes[0].bounds.extend(unsortedResults[key].result.routes[0].bounds.getNorthEast());
                                                 combinedResults.routes[0].bounds = combinedResults.routes[0].bounds.extend(unsortedResults[key].result.routes[0].bounds.getSouthWest());
                                             }
@@ -150,19 +149,56 @@ function Tour_startUp(stops) {
                                 }
                                 directionsDisplay.setDirections(combinedResults);
                                 var legs = combinedResults.routes[0].legs;
-                                // alert(legs.length);
-                                for (var i=0; i < legs.length;i++){
-									var markerletter = "A".charCodeAt(0);
-				  					markerletter += i;
-                    	            markerletter = String.fromCharCode(markerletter);
-                                 	createMarker(directionsDisplay.getMap(),legs[i].start_location,"marker"+i,"some text for marker "+i+"<br>"+legs[i].start_address,markerletter);
+                                var oreo = combinedResults.routes[0].waypoint_order;
+                               	var toMult = 0;
+                                for(var i=0;i<oreo.length;i++){
+                                	if(i%8==0&&i>0){
+                                		toMult =i/8;
+                                	}
+                                	oreo[i]=oreo[i]+(toMult*8);
                                 }
-                                var i=legs.length;
-                                var markerletter = "A".charCodeAt(0);
-			        			markerletter += i;
-                                markerletter = String.fromCharCode(markerletter);
-                                createMarker(directionsDisplay.getMap(),legs[legs.length-1].end_location,"marker"+i,"some text for the "+i+"marker<br>"+legs[legs.length-1].end_address,markerletter);
-                            }
+                                var info=${cInfo};
+                                var endPts = [];
+                                for(var i=0;i<oreo.length;i++){
+                                	if(i%8==0&&i>0){
+                                		endPts.push(info.splice((i-1), 1));
+                                	}
+                                }
+                                var endPtCount =0;
+                                var wayPtCount =0;
+                                var locList = document.getElementById("location_list");
+                        		locList.innerHTML = "";
+                                // alert(legs.length);
+                                for (var i=1; i < legs.length;i++){
+									var markerletter = "A".charCodeAt(0);
+				  					markerletter += (i-1);
+                    	            markerletter = String.fromCharCode(markerletter);
+                                 	createMarker(directionsDisplay.getMap(),legs[i].start_location,"Stop "+markerletter,"<br>"+legs[i].start_address,markerletter);
+                                 	if(i%8!=0){
+				                		locList.innerHTML+="<b>" + markerletter + "</b> " + info[oreo[wayPtCount]] + "<br>";
+				                		wayPtCount++;
+                                 	}
+				                	else{
+				                		locList.innerHTML+="<b>" + markerletter + "</b> " + endPts[endPtCount] + "<br>";
+				                		endPtCount++;
+				                	}
+                                }
+                                new google.maps.Marker({
+                    				position: legs[legs.length-1].end_location,
+                    	    		map: directionsDisplay.getMap(),
+                    	    		label: {
+                           	    		text: 'H',
+                           	    		fontWeight: 'bold'
+                           	    	},
+                    	    		icon: {
+                    	    		      path: google.maps.SymbolPath.CIRCLE,
+                    	    		      scale: 12,
+                    	    		      strokeWeight: 1,
+                    	    		      fillOpacity: 1,
+                    	    		      fillColor: 'GREEN'
+                    	    		    }
+                    	  		});
+							}
                         }
                     });
                 })(k);
@@ -258,6 +294,7 @@ function createMarker(map, latlng, label, html, color) {
   </head>
   <body>
   <div id="map"></div>
+  <div id="location_list" style="margin:5px;"></div>
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">
