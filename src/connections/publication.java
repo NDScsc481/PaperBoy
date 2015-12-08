@@ -11,7 +11,7 @@ public class publication {
 	private String genre;
 	private double price;
 	private String frequency;
-	protected int PID;
+	private int PID;
 	private String status;
 	private int dayNum;
 	private connect cn = new connect();
@@ -19,7 +19,7 @@ public class publication {
 	
 	public publication(String tit, String gen, double prc, String freq, int dNum){
 		cn.addPublication(tit, gen, prc, freq, dNum);
-		PID = cn.getPublicationID(title);
+		PID = cn.getPublicationID(tit);
 		dayNum = dNum;
 		status = "ACTIVE";
 		title = tit;
@@ -29,8 +29,20 @@ public class publication {
 		dayNum = dNum;
 	}
 	
+<<<<<<< HEAD
 	public publication(int ID){
 		ResultSet r = cn.searchPublication(ID, "", "");
+=======
+<<<<<<< HEAD
+	public publication(connect con, int ID){
+
+		cn = con;
+=======
+	public publication(int ID){
+>>>>>>> master
+		ResultSet r = cn.searchPublication(ID, "");
+
+>>>>>>> master
 		try{
 			while(r.next()){
 				PID = r.getInt("PublicationID");
@@ -40,11 +52,13 @@ public class publication {
 				frequency = r.getString("Frequency");
 				genre = r.getString("Genre");
 				dayNum = r.getInt("DeliveryDays");
+
 			}
 
 		}
 		catch(Exception e){
 			PID = 0;
+
 		}
 	}
 	
@@ -96,6 +110,7 @@ public class publication {
 	}
 
 	 public double getPrice(){
+<<<<<<< HEAD
 		 return price;
 	 }
 
@@ -131,6 +146,28 @@ public class publication {
 	 public void close(){
 		 cn.disconnect();
 	 }
+=======
+	        return price;
+	    }
+	    
+	    public String getBillTitle(){
+	        return title + " - " +frequency;
+	    }
+<<<<<<< HEAD
+	  public int getPID(){
+		  return PID;
+	  }
+	  public String getTitle(){
+		  return title;
+	  }
+	
+=======
+
+	public void close(){
+		cn.disconnect();
+	}
+>>>>>>> master
+>>>>>>> master
 }
 //public static String getNextIssueDate(String issuedDate, String freq){
 //

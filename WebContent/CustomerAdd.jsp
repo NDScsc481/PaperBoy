@@ -4,28 +4,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Customer Add</title>
-
+<title>Employee Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
 </head>
 
 <body>
-<div id="header"></div>
+<div id="header">
+</div>
 
 <div id="nav">
-<a href="EmployeeHome.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Home</b></font></a><br><br>
-<a href="CustomerCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Customer Center</b></font></a><br><br>
-<a href="PublicationCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Publications</b></font></a><br><br>
-<a href="Printing.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Printing</b></font></a><br><br>
-<a href="Login.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Log Out</b></font></a><br><br>
+<ul>
+  <li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>  
+  <li><a class="active" href="CustomerCenter.jsp">Customers</a></li>
+  <li><a href="PublicationCenter.jsp">Publications</a></li>
+  <li><a href="Printing.jsp">Printing</a></li>
+  <ul style="float:right;list-style-type:none;">
+  <li><a href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+  <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+</ul>
 </div>
+
+<div id="bckgrnd">
 
 <div id="section">
 <h2>Add a Customer</h2><br>
 <span id="error">${errorMsg}<br></span>
 
 <form action="CustAddSrvlt" method="post">
+<<<<<<< HEAD
 	<input type="text" name="first" value="${firstName}"/><br><sup>First Name</sup><p>
     <input type="text" name="last" value="${last}"/><br><sup>Last Name</sup><p>
     <input type="text" name="p" value="${p}"/><br><sup>Phone Number</sup><p>  
@@ -33,6 +44,14 @@
     <input type="text" name="add2" value="${add2}"/><br><sup>Apartment, Unit, etc. (Optional)</sup><p>
     <input type="text" name="c" value="${c}"/><br><sup>City</sup><p>
     <select name="s">
+=======
+	<input type="text" name="first" value="${first}" placeholder = "First Name"/>
+    <input type="text" name="last" value="${last}" placeholder = "Last Name"/><p>
+    <input type="text" name="add1" value="${add1}" placeholder = "Address"/>
+    <input type="text" name="add2" value="${add2}"placeholder = "Address 2"/>
+    <input type="text" name="c" value="${c}"placeholder = "City"/><p>
+    <select name="s" placeholder = "State">
+>>>>>>> master
     	<option selected="${s}">${s}</option>
 		<option value="AL">AL</option>
 		<option value="AK">AK</option>
@@ -85,12 +104,14 @@
 		<option value="WV">WV</option>
 		<option value="WI">WI</option>
 		<option value="WY">WY</option>
-	</select><br><sup>State</sup><br><br>
-    <input type="text" name="z" value="${z}"/><br><sup>Zip Code</sup><p>  	
+	</select>
+    <input type="text" name="z" value="${z}" placeholder="Zip Code"/>
+    <input type="text" name="p" value="${p}" placeholder = "Phone Number"/><br><sup>State</sup><p>
+   
     <input type="submit" value="Add" name="add">  <input type="submit" value="Cancel" name="add"> 
     </form>   
 </div>
-
+</div>
 <div id="footer">
 Copyright © Team One - CSC 481
 </div>

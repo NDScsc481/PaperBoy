@@ -1,4 +1,31 @@
-//package connections;
+package connections;
+
+
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.Calendar;
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDate; 
+import java.time.LocalDateTime;
+import java.util.GregorianCalendar;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+
+
+public class Main {
+
+
+	public static void main(String[] args) {
+		customer c = new customer(39);
+		System.out.println(c.getFirstName());
+		c.modFirstName("Org");
+		System.out.println(c.getFirstName());
+		c.close();
+=======
+import java.sql.ResultSet;
+
 //
 //
 //import java.sql.*;
@@ -14,14 +41,44 @@
 //import java.text.SimpleDateFormat;
 //
 //
-//public class Main {
+public class Main {
+
+	public static int testCustID;
+	public static int testPubID;
+	public static void main(String[] args) {
+		connect con = new connect();
+		customer cust = new customer("nathan", "salas", "7712 Hillside drive", "", "san diego", "CA", "90277", "8821147796");//		con.addCustomer("Buddy","Bear", "1520 Garnet Ave", "", "San Diego", "CA", "92109", "4766666656");
+//    	con.addPublication("Runner Magazine","Sports", 9.80, "Monthly", 5);
 //
+//       	ResultSet r = con.searchCustomer(0, "Buddy", "");
+//       //	ResultSet rs = con.searchPublication(0, "Runner Magazine");
 //
-//	public static void main(String[] args) {
-//		connect cn = new connect();
-//		
-//		
-//			
+//   			try{
+//    			while(r.next()){
+//    				testCustID = r.getInt("CustomerID");
+//
+//    				}
+//       			r.close();
+//
+//    			}
+//   			catch(Exception e){
+//    	 			e.printStackTrace();
+//    			}
+//	
+//   	       	ResultSet rs = con.searchPublication(0, "Runner Magazine");
+//
+//   			try{
+//    			while(rs.next()){
+//    				testPubID = rs.getInt("PublicationID");    				
+//
+//    				}
+//    			}catch(Exception e){
+//    	 			e.printStackTrace();
+//    			}
+//   			subscriptions newSub = new subscriptions(con, testCustID, testPubID);
+	}
+}
+			
 //	LinkedList<Integer> custList = TodaysCustomerDeliveries.generateTodaysCustDeliveries();
 //
 //	System.out.println("Sorted cust list size: ");// + sortedCustList.size());
