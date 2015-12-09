@@ -20,7 +20,11 @@ public class connect{
 	public connect(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
+<<<<<<< HEAD
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3308/saturdays_db", "root", "12345");
+=======
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/NewDB", "root", "");
+>>>>>>> Nathan_Branch
 			stmt = con.createStatement();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -358,7 +362,14 @@ public class connect{
 	 */
 	public ResultSet getDailyCustomerInfo(int wk, int mn){
 		try{
+<<<<<<< HEAD
 			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by Latitude, Longitude, CustomerID");
+=======
+			return stmt.executeQuery("select * from customerpublications where "
+					+ "(DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR "
+							+ "(DeliveryDays = " + mn + " AND Frequency = \"monthly\") "
+									+ "OR Frequency = \"daily\" order by CID");
+>>>>>>> Nathan_Branch
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -509,14 +520,25 @@ public class connect{
 	 * @param t		The title of the publication to search for
 	 * @return ResultSet
 	 **/
-	public ResultSet searchPublication(int PID, String t){
+	public ResultSet searchPublication(int PID, String t, String genre){
 		ResultSet rs;
 		try{
+<<<<<<< HEAD
 			if(PID!=0){
 				rs = stmt.executeQuery("select * from publications where PublicationID = " + PID);
 			}
 			else{
 				rs = stmt.executeQuery("select * from publications where PublicationName = \"" + t + "\"");
+=======
+			if(PID != 0){
+				rs = stmt2.executeQuery("select * from publications where PublicationID = " + PID);
+			}else if(t.length() != 0 && genre.length() == 0){
+				rs = stmt2.executeQuery("select * from publications where PublicationName like \'%" + t + "%\'");
+			}else if(genre.length() != 0 && t.length() == 0){
+				rs = stmt2.executeQuery("select * from publications where genre like \'%" + genre + "%\'");
+			}else {
+				rs = stmt2.executeQuery("select * from publications");
+>>>>>>> Nathan_Branch
 			}
 			return rs;
 		}
@@ -551,9 +573,10 @@ public class connect{
 	 * @param st	The new status of the publication
 	 * @return boolean
 	 **/
-	public boolean modPublicationInfo(int PID, String st){
+	public boolean modPublicationInfo(int PID, String type, String to){
 		try{
-			stmt.executeUpdate("update publications set Status = \"" + st + "\" where PublicationID = " + PID);
+			System.out.println("update publications set \""+ type + "\" = \"" + to + "\" where PublicationID = " + PID);
+			//stmt.executeUpdate("update publications set \""+ type + "\" = \"" + to + "\" where PublicationID = " + PID);
 			return true;
 		}
 		catch(Exception e){

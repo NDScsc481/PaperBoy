@@ -38,22 +38,42 @@ ${Msg}<br>
 	<input type="text" name="title"/><br><sup>Title</sup><p>
 	<input type="text" name="genre"/><br><sup>Genre</sup><p>
     <input type="text" name="price"/><br><sup>Price</sup><p>
-    Sun<input type="checkbox" name="day1" value="Sun"> | 
-    Mon<input type="checkbox" name="day2" value="Mon"> |
-    Tue<input type="checkbox" name="day3" value="Tue"> |
-    Wed<input type="checkbox" name="day4" value="Wed"> |
-    Thu<input type="checkbox" name="day5" value="Thu"> |
-    Fri<input type="checkbox" name="day6" value="Fri"> |
-    Sat<input type="checkbox" name="day7" value="Sat"> <p>
-    <input type="radio" name="freq" value="daily" checked> Daily<br>
-    <input type="radio" name="freq" value="weekly"> Weekly<br>
-    <input type="radio" name="freq" value="monthly"> Monthly<p>
-    	
+    <select onchange="displayType()" name="freq" id="freq">
+    	<option value="daily"> Daily </option>
+    	<option value="weekly"> Weekly</option>
+        <option value="monthly"> Monthly</option>
+    </select>
+    <fieldset name = "days" id="daycb" hidden=true>
+    <legend> Delivery Days</legend>
+		Sun<input type="radio" name="day" value="1"> | 
+	    Mon<input type="radio" name="day" value="2"> |
+	    Tue<input type="radio" name="day" value="3"> |
+	    Wed<input type="radio" name="day" value="4"> |
+	    Thu<input type="radio" name="day" value="5"> |
+	    Fri<input type="radio" name="day" value="6"> |
+	    Sat<input type="radio" name="day" value="7"> <p>
+    </fieldset>
+    <input type="text" name="mday" id="monthtb" placeholder="Start Date" hidden=true>
+    <br>
     <input type="submit" value="Add">     
     </form> 
 </div>
 </div>	
 
+<script type="text/javascript">
+	window.displayType = function(){
+		if(document.getElementById("freq").selectedIndex == "0"){
+			document.getElementById('daycb').hidden = true;
+			document.getElementById('monthtb').hidden = true;
+		}else if(document.getElementById("freq").selectedIndex == "1"){
+			document.getElementById('daycb').hidden = false;
+			document.getElementById('monthtb').hidden = true;
+		}else{
+			document.getElementById('daycb').hidden = true;
+			document.getElementById('monthtb').hidden = false;
+		}
+	}
+</script>
 <div id="footer">
 Copyright © Team One - CSC 481
 </div>
