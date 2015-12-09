@@ -33,12 +33,21 @@
 <div id="section">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+<a href="PublicationAdd.jsp"><b><ins>Add</ins></b></a><br> Add publication into database<br><br>
+<a href="PublicationLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Find publication in database and modify it's information.. or don't, that's cool too.<br><br>
+</div>
+=======
+<h1>Publication Center</h1>
+>>>>>>> master
+=======
 <h1>Publication Center</h1>
 =======
 <a href="PublicationAdd.jsp"><b><ins>Add</ins></b></a><br> Add publication into database<br><br>
 <a href="PublicationLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Find publication in database and modify it's information.. or don't, that's cool too.<br><br>
 </div>
 >>>>>>> Nathan_Branch
+>>>>>>> master
 
 <a href="PublicationAdd.jsp"><b><ins><span class="glyphicon glyphicon-plus"></span> Add</ins></b></a><br> Add publication into database<br><br>
 <a href="PublicationModify.jsp"><b><span class="glyphicon glyphicon-edit"></span><ins> Modify</ins></b></a><br> Modify existing publication in database<br><br>

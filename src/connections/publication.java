@@ -31,6 +31,12 @@ public class publication {
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
+	public publication(int ID){
+		ResultSet r = cn.searchPublication(ID, "", "");
+=======
+=======
+>>>>>>> master
+<<<<<<< HEAD
 	public publication(connect con, int ID){
 
 		cn = con;
@@ -39,10 +45,14 @@ public class publication {
 >>>>>>> master
 		ResultSet r = cn.searchPublication(ID, "");
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
 =======
 	public publication(int ID){
 		ResultSet r = cn.searchPublication(ID, "", "");
 >>>>>>> Nathan_Branch
+>>>>>>> master
 		try{
 			while(r.next()){
 				PID = r.getInt("PublicationID");
@@ -111,6 +121,8 @@ public class publication {
 
 	 public double getPrice(){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 	        return price;
 	    }
 	    
@@ -132,6 +144,7 @@ public class publication {
 	}
 >>>>>>> master
 =======
+>>>>>>> master
 		 return price;
 	 }
 
@@ -167,7 +180,32 @@ public class publication {
 	 public void close(){
 		 cn.disconnect();
 	 }
+<<<<<<< HEAD
+=======
+	        return price;
+	    }
+	    
+	    public String getBillTitle(){
+	        return title + " - " +frequency;
+	    }
+<<<<<<< HEAD
+	  public int getPID(){
+		  return PID;
+	  }
+	  public String getTitle(){
+		  return title;
+	  }
+	
+=======
+
+	public void close(){
+		cn.disconnect();
+	}
+>>>>>>> master
+>>>>>>> master
+=======
 >>>>>>> Nathan_Branch
+>>>>>>> master
 }
 //public static String getNextIssueDate(String issuedDate, String freq){
 //
