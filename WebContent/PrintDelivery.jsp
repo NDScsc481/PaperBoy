@@ -1,38 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Printing Delivery</title>
-
+<title>Employee Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">
-<script type="text/javascript">
-var routeButtons = function() {
-	var dButton = document.getElementById("driver_buttons");
-	dButton="<form>";
-	    for (var j = 0 ; j < valueOf("${num}") ; j++) {
-
-	      dButton += "<input type='submit' value='"+ j +"' name='butt'><br>";
-	    }
-	    dButton+="</form>";
-}
-</script>
 </head>
 
-<body >
-<div id="header"></div>
-
-<div id="nav">
-<a href="EmployeeHome.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Home</b></font></a><br><br>
-<a href="CustomerCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Customer Center</b></font></a><br><br>
-<a href="PublicationCenter.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Publications</b></font></a><br><br>
-<a href="Printing.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Printing</b></font></a><br><br>
-<a href="Login.jsp" style="text-decoration:none"><font color="white" size = "4"><b>Log Out</b></font></a><br><br>
+<body>
+<div id="header">
 </div>
 
+<div id="nav">
+<ul>
+  <li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>  
+  <li><a href="CustomerCenter.jsp">Customers</a></li>
+  <li><a href="PublicationCenter.jsp">Publications</a></li>
+  <li><a href="Printing.jsp">Printing</a></li>
+  <ul style="float:right;list-style-type:none;">
+  <li><a href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+  <li><a class="active" href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+</ul>
+</div>
+
+
+<div id="bckgrnd">
 <div id="section">
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
 <span id="error">${errorMsg}</span>
@@ -43,6 +41,7 @@ There are ${cLength} locations to visit today.<br>
 
 </form>
 ${butt}<br>
+</div>
 </div>
 
 <div id="footer">

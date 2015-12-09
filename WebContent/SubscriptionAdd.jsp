@@ -32,20 +32,21 @@
 
 <div id="bckgrnd">
 <div id="section">
-<h1><font color=#9c3141 face="arial">Printing</font></h1>
-
-<form action="PrintSrvlt" method="post">
-<input type="submit" value="Delivery" name="sub"><br>Print delivery list for each driver.<br><br>
-<input type="submit" value="Full Summary" name="sub"><br>Print today's full list of deliveries<br><br>
-<input type="submit" value="Bills" name="sub"><br> Print this month's bills<br><br>
-</div>
-</form> 
+<div><h2>Add Subscription(s)</h2>
+<span id="error">${errorMsg}</span>
+<form action="SubAddSrvlt" method="post">
+	${firstName} ${lastName}<br>
+	<input type="hidden" name="CID" value="${CID}">
+	<input type="text" name="addid" placeholder="Add by Publication ID">
+    <input type="submit" value="Add subscription" name="add">  <input type="submit" value="Cancel" name="sub">  
+    <br><br><h1>All publications</h1><br>
+    ${results}<br>
+</form>
 </div>
 </div>
 <div id="footer">
 Copyright © Team One - CSC 481
 </div>
-
+</div>
 </body>
 </html>
-

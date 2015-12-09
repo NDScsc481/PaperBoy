@@ -89,49 +89,49 @@ public class print {
 		}
 	}
 	
-	public ArrayList<String> printBills(){
-		ArrayList<String> s = new ArrayList<String>();
-		if(!Files.exists(Paths.get(billFilePath))){
-			try{
-				Files.createDirectories(Paths.get(billFilePath));
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		billPeriod = DateTime.getBillPeriod();
-		String invoiceNum;
-		String tempInfo ="";
-		int tempID=0;
-		double totalDue;
-		try{
-			ResultSet r = cn.getBillInfo();
-			while(r.next()){
-				if(tempID!=r.getInt("CustomerID")){
-					if(tempInfo!=""){
-						s.add(tempInfo);
-					}
-					tempID=r.getInt("CustomerID");
-					s.add(r.getString("Address") + ", " + r.getString("City") + ", " + r.getString("State") + ", " + r.getString("Zip"));
-					if(r.getString("AddressLineTwo")!=null)
-						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
-								r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
-								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
-					else
-						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
-								r.getString("Address") + "<br>" +
-								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
-				}
-				else{
-					tempInfo+="<i>" + r.getString("PublicationTitle") + "</i><br>";
-				}
-			}
-			r.close();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
+//	public ArrayList<String> printBills(){
+//		ArrayList<String> s = new ArrayList<String>();
+//		if(!Files.exists(Paths.get(billFilePath))){
+//			try{
+//				Files.createDirectories(Paths.get(billFilePath));
+//			}
+//			catch(Exception e){
+//				e.printStackTrace();
+//			}
+//		}
+//		billPeriod = DateTime.getBillPeriod();
+//		String invoiceNum;
+//		String tempInfo ="";
+//		int tempID=0;
+//		double totalDue;
+//		try{
+//			ResultSet r = cn.getBillInfo();
+//			while(r.next()){
+//				if(tempID!=r.getInt("CustomerID")){
+//					if(tempInfo!=""){
+//						s.add(tempInfo);
+//					}
+//					tempID=r.getInt("CustomerID");
+//					s.add(r.getString("Address") + ", " + r.getString("City") + ", " + r.getString("State") + ", " + r.getString("Zip"));
+//					if(r.getString("AddressLineTwo")!=null)
+//						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
+//								r.getString("Address") + "<br>" + r.getString("AddressLineTwo") + "<br>" +
+//								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
+//					else
+//						tempInfo = ("<b>" + r.getString("FirstName") + " " + r.getString("LastName") + "</b><br>" +
+//								r.getString("Address") + "<br>" +
+//								r.getString("City") + ", " + r.getString("State") + " " + r.getString("Zip") + "<br><i>" + r.getString("PublicationTitle") + "</i><br>");
+//				}
+//				else{
+//					tempInfo+="<i>" + r.getString("PublicationTitle") + "</i><br>";
+//				}
+//			}
+//			r.close();
+//		}
+//		catch(Exception e){
+//			e.printStackTrace();
+//		}
+//	}
 	
 	//unfinished
 	public void printSummary(){

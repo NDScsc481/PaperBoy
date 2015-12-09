@@ -19,29 +19,31 @@
 
 <div id="nav">
 <ul>
-  <li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>  
+  <li><a class="active" href="index.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>  
   <li><a href="CustomerCenter.jsp">Customers</a></li>
   <li><a href="PublicationCenter.jsp">Publications</a></li>
   <li><a href="Printing.jsp">Printing</a></li>
   <ul style="float:right;list-style-type:none;">
-  <li><a class="active" href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+  <li><a href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
   <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 </ul>
 </div>
 
+<div id="bckgrnd"><img src="./images/deliv.jpg" alt="Paperboy Deliveries" style="height:360px; margin-right:50px; margin-top:50px;" ALIGN=RIGHT>
+<div id="section"> 
 
-<div id="bckgrnd">
-<div id="section">
-<h1><font color=#9c3141 face="arial">Printing</font></h1>
+Paperboy&trade;: Newspaper and subscription software <br>created to organize and coordinate delivery routes.<p><br>
+Ease of Use<br>
+<sup>Paperboy is designed to work on all computers <br>using an internet browser and made to work seamlessly</sup><p>
+Fast and Reliable<br>
+<sup>Data is reliably transfered to a local secure <br>database which holds all customer and newspaper/magazine data.</sup><p>	
+Secure Data<br>
+<sup>Customer information is safe behind an employee login.</sup>
 
-<form action="PrintSrvlt" method="post">
-<input type="submit" value="Delivery" name="sub"><br>Print delivery list for each driver.<br><br>
-<input type="submit" value="Full Summary" name="sub"><br>Print today's full list of deliveries<br><br>
-<input type="submit" value="Bills" name="sub"><br> Print this month's bills<br><br>
-</div>
-</form> 
 </div>
 </div>
+
+
 <div id="footer">
 Copyright © Team One - CSC 481
 </div>

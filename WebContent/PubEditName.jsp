@@ -32,15 +32,19 @@
 
 <div id="bckgrnd">
 <div id="section">
-<h1><font color=#9c3141 face="arial">Printing</font></h1>
+<div><h2>Edit Company Address</h2>
+<span id="error">${errorMsg}</span>
+<form action="PubEditSubSrvlt" method="post">
+	<p>PublicationID: ${PID} </p>
+	<input type="hidden" name="PID" value="${PID}">
+	<input type="text" name="pName" value="${pName}"/><br><sup>Publication Title</sup><br><br>
+    <input type="text" name="genre" value="${genre}"/><br><sup>Genre</sup><br><br>
+    
+    <input type="submit" value="Submit Name Edit" name="sub">  <input type="submit" value="Cancel" name="sub">
+</form>
+</div>
+</div>
 
-<form action="PrintSrvlt" method="post">
-<input type="submit" value="Delivery" name="sub"><br>Print delivery list for each driver.<br><br>
-<input type="submit" value="Full Summary" name="sub"><br>Print today's full list of deliveries<br><br>
-<input type="submit" value="Bills" name="sub"><br> Print this month's bills<br><br>
-</div>
-</form> 
-</div>
 </div>
 <div id="footer">
 Copyright © Team One - CSC 481
@@ -48,4 +52,3 @@ Copyright © Team One - CSC 481
 
 </body>
 </html>
-

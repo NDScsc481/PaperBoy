@@ -122,7 +122,7 @@ public class PrintSrvlt extends HttpServlet {
 					print p = new print();
 					p.printAllBills();
 					
-					request.getRequestDispatcher("/PrintDelivery.jsp").forward(request, response);
+					request.getRequestDispatcher("/NewFile.jsp").forward(request, response);
 				}
 			}
 		}

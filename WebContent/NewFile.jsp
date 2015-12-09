@@ -34,12 +34,31 @@
 <div id="section">
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
 
-<form action="PrintSrvlt" method="post">
-<input type="submit" value="Delivery" name="sub"><br>Print delivery list for each driver.<br><br>
-<input type="submit" value="Full Summary" name="sub"><br>Print today's full list of deliveries<br><br>
-<input type="submit" value="Bills" name="sub"><br> Print this month's bills<br><br>
-</div>
-</form> 
+<div>
+<object data="2015-11-23-45.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+<br> 
+<object data="2015-11-23-43.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object> 
+<object data="2015-11-23-42.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+<br> 
+<object data="2015-11-23-41.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+<br> 
+<object data="2015-11-23-45.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+</div> 
 </div>
 </div>
 <div id="footer">
