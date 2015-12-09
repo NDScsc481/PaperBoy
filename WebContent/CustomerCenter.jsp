@@ -33,11 +33,20 @@
 <div id="section">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <a href="CustomerAdd.jsp"><b><ins>Add</ins></b></a><br> Add a customer into database<br><br>
 <a href="CustomerLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Lookup customer in database
 </div>
 =======
 <h1>Customer Center</h1>
+>>>>>>> master
+=======
+<h1>Customer Center</h1>
+=======
+<a href="CustomerAdd.jsp"><b><ins>Add</ins></b></a><br> Add a customer into database<br><br>
+<a href="CustomerLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Lookup customer in database
+</div>
+>>>>>>> Nathan_Branch
 >>>>>>> master
 
 <a href="CustomerAdd.jsp"><b><ins><span class="glyphicon glyphicon-plus"></span> Add</ins></b></a><br> Add a customer into database<br><br>

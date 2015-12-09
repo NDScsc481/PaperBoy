@@ -37,13 +37,7 @@
 
 <form action="CustAddSrvlt" method="post">
 <<<<<<< HEAD
-	<input type="text" name="first" value="${firstName}"/><br><sup>First Name</sup><p>
-    <input type="text" name="last" value="${last}"/><br><sup>Last Name</sup><p>
-    <input type="text" name="p" value="${p}"/><br><sup>Phone Number</sup><p>  
-    <input type="text" name="add1" value="${add1}"/><br><sup>Street Address</sup><p>
-    <input type="text" name="add2" value="${add2}"/><br><sup>Apartment, Unit, etc. (Optional)</sup><p>
-    <input type="text" name="c" value="${c}"/><br><sup>City</sup><p>
-    <select name="s">
+<<<<<<< HEAD
 =======
 	<input type="text" name="first" value="${first}" placeholder = "First Name"/>
     <input type="text" name="last" value="${last}" placeholder = "Last Name"/><p>
@@ -51,6 +45,26 @@
     <input type="text" name="add2" value="${add2}"placeholder = "Address 2"/>
     <input type="text" name="c" value="${c}"placeholder = "City"/><p>
     <select name="s" placeholder = "State">
+=======
+>>>>>>> master
+	<input type="text" name="first" value="${firstName}"/><br><sup>First Name</sup><p>
+    <input type="text" name="last" value="${last}"/><br><sup>Last Name</sup><p>
+    <input type="text" name="p" value="${p}"/><br><sup>Phone Number</sup><p>  
+    <input type="text" name="add1" value="${add1}"/><br><sup>Street Address</sup><p>
+    <input type="text" name="add2" value="${add2}"/><br><sup>Apartment, Unit, etc. (Optional)</sup><p>
+    <input type="text" name="c" value="${c}"/><br><sup>City</sup><p>
+    <select name="s">
+<<<<<<< HEAD
+=======
+	<input type="text" name="first" value="${first}" placeholder = "First Name"/>
+    <input type="text" name="last" value="${last}" placeholder = "Last Name"/><p>
+    <input type="text" name="add1" value="${add1}" placeholder = "Address"/>
+    <input type="text" name="add2" value="${add2}"placeholder = "Address 2"/>
+    <input type="text" name="c" value="${c}"placeholder = "City"/><p>
+    <select name="s" placeholder = "State">
+>>>>>>> master
+=======
+>>>>>>> Nathan_Branch
 >>>>>>> master
     	<option selected="${s}">${s}</option>
 		<option value="AL">AL</option>
