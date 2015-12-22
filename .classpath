@@ -5,9 +5,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/javax.faces-2.2.8"/>
-	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/javax.servlet-3.0"/>
-	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/mysql-connector-java-5.1.37-bin"/>
-	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/tomcat-bootstrap"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/javax.servlet-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/tomcat-bootstrap.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

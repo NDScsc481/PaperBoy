@@ -1,11 +1,11 @@
-package tests;
+package src.tests;
 
 import static org.junit.Assert.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import java.sql.*;
-import connections.*;
+import src.connections.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
@@ -57,12 +57,12 @@ public class customerTests {
 		assertNull(cust.getAddLn2());
 		assertEquals("211 Yacht club Way",cust.getAddLn1());
 	}
-	@Test
-	public void test7_setStatusTest(){
-		customer cust = new customer(testCustID);
-		cust.setStatus("INACTIVE");
-		assertEquals("INACTIVE",cust.getStatus());
-	}
+//	@Test
+//	public void test7_setStatusTest(){
+//		customer cust = new customer(testCustID);
+//		cust.setStatus("INACTIVE");
+//		assertEquals("INACTIVE",cust.getStatus());
+//	}
 	 @AfterClass
 	    public static void oneTimeTearDown() {
 	        con.deleteColumn("customers",testCustID);
