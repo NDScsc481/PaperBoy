@@ -43,10 +43,17 @@
 =======
 <h1>Customer Center</h1>
 =======
+<<<<<<< HEAD
+<h1>Customer Center</h1>
+=======
 <a href="CustomerAdd.jsp"><b><ins>Add</ins></b></a><br> Add a customer into database<br><br>
 <a href="CustomerLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Lookup customer in database
 </div>
 >>>>>>> Nathan_Branch
+<<<<<<< HEAD
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
+=======
+>>>>>>> master
 >>>>>>> master
 
 <a href="CustomerAdd.jsp"><b><ins><span class="glyphicon glyphicon-plus"></span> Add</ins></b></a><br> Add a customer into database<br><br>

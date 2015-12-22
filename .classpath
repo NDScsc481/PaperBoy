@@ -1,4 +1,19 @@
 <<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/javax.servlet-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dianne/Desktop/oldSchoolStuff/Software Engineering/naked jars/tomcat-bootstrap.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <?xml version="1.0" encoding="UTF-8"?>
@@ -72,4 +87,5 @@
 >>>>>>> master
 =======
 >>>>>>> Nathan_Branch
+>>>>>>> master
 >>>>>>> master

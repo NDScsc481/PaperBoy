@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class PubFillSrvlt
+ * Servlet implementation class PrintDeliverySrvlt
  */
-@WebServlet("/PubFillSrvlt")
-public class PubFillSrvlt extends HttpServlet {
+@WebServlet("/PrintDeliverySrvlt")
+public class PrintDeliverySrvlt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PubFillSrvlt() {
+    public PrintDeliverySrvlt() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,9 +35,13 @@ public class PubFillSrvlt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String s = (String)request.getParameter("id");
-		System.out.println(s + "1");
+		int a = Integer.parseInt(request.getParameter("add"));
+		HttpSession session = request.getSession();
+		String adds = (String)session.getAttribute("d"+a);
+		String info = (String)session.getAttribute("dInfo"+a);
+		request.setAttribute("cToday", adds);
+		request.setAttribute("cInfo", info);
+		request.getRequestDispatcher("/MapTest.jsp").forward(request, response);
 	}
 
 }

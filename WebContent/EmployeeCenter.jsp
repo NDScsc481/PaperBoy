@@ -88,10 +88,12 @@
 	</table>
 </form>
 <br>
-
 </div>
 </div>
+<<<<<<< HEAD
+=======
 
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 <div id="footer">
 Copyright © Team One - CSC 481
 </div>

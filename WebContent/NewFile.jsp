@@ -24,8 +24,8 @@
   <li><a href="PublicationCenter.jsp">Publications</a></li>
   <li><a href="Printing.jsp">Printing</a></li>
   <ul style="float:right;list-style-type:none;">
-  <li><a href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-  <li><a class="active" href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  <li><a class="active" href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+  <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 </ul>
 </div>
 
@@ -33,18 +33,34 @@
 <div id="bckgrnd">
 <div id="section">
 <h1><font color=#9c3141 face="arial">Printing</font></h1>
-<span id="error">${errorMsg}</span>
-<form action="PrintSrvlt" method="post">
-There are ${cLength} locations to visit today.<br>
-<input type="number" value="1" name="numDriver">
-<input type="submit" value="Delivery Report" name="sub"><br>How Many Drivers?<br><br>
 
-</form>
-${butt}<br>
+<div>
+<object data="2015-11-23-45.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+<br> 
+<object data="2015-11-23-43.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object> 
+<object data="2015-11-23-42.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+<br> 
+<object data="2015-11-23-41.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+<br> 
+<object data="2015-11-23-45.txt" type="text/plain"
+width="100%" style="height: 10em">
+<a href="2015-11-23-45.txt"></a>
+</object>
+</div> 
 </div>
 </div>
-</div>
-
 <div id="footer">
 Copyright © Team One - CSC 481
 </div>

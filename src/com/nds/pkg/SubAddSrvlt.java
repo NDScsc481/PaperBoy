@@ -1,4 +1,4 @@
-package com.nds.pkg;
+package src.com.nds.pkg;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage;
 
-import connections.publication;
-import connections.subscriptions;
+import src.connections.publication;
+import src.connections.subscriptions;
 /**
  * Servlet implementation class SubAddSrvlt
  */
@@ -48,9 +48,19 @@ public class SubAddSrvlt extends HttpServlet {
 //		request.getRequestDispatcher("/SubscriptionAdd.jsp").forward(request, response);
 //		//request.setAttribute("first", f);
 		String s = request.getParameter("add");
-		System.out.println(s);
 		if(s.matches("Add")){
-			System.out.println("In add");
+			request.setAttribute("CID", 0);
+			ArrayList<String> results = publication.getSearchPublications("*SEARCHFORSUBS*", "*SEARCHFORSUBS*");
+			String r="";
+			
+			for(int i=0;i<results.size();i++){
+				r += results.get(i);
+			}
+			request.setAttribute("results", r);
+			
+			request.getRequestDispatcher("/SubscriptionAdd.jsp").forward(request, response);
+			
+
 			request.setAttribute("CID", 0);
 			response.setHeader("REFRESH", "5");
 			request.getRequestDispatcher("/SubscriptionAdd.jsp").forward(request, response);
@@ -60,7 +70,7 @@ public class SubAddSrvlt extends HttpServlet {
 			
 			for(int i=0;i<results.size();i++){
 				r += results.get(i);
-		
+
 			}
 			request.setAttribute("results", r);
 			request.getRequestDispatcher("/SubscriptionAdd.jsp").forward(request, response);
@@ -68,6 +78,9 @@ public class SubAddSrvlt extends HttpServlet {
 			String pid = request.getParameter("addid");
 			String cid = request.getParameter("CID");
 			System.out.println("PID: " + pid + "\nCID: " + cid);
+			request.setAttribute("errorMsg", "Subscription Added Successfully!");
+			request.getRequestDispatcher("/CustomerAdd.jsp");
+			//subscriptions sub = new subscriptions(Integer.parseInt(cid), Integer.parseInt(pid));
 			subscriptions sub = new subscriptions(Integer.parseInt(cid), Integer.parseInt(pid));
 			
 		}

@@ -1,4 +1,4 @@
-package com.nds.pkg;
+package src.com.nds.pkg;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -46,8 +46,8 @@ public class PubAddSrvlt extends HttpServlet {
 		String freq 	= request.getParameter("freq");
 		
 		if(!title.isEmpty() && !price.isEmpty() && !genre.isEmpty()){
-			if(freq.equals("day"))
-				title = "first cond";//publication thisPub = new publication(title, genre, price);
+			if(freq.equals("day")){//publication thisPub = new publication(title, genre, price);
+			}
 			else{
 				Boolean []schedule = new Boolean[7]; 
 				
@@ -86,7 +86,7 @@ public class PubAddSrvlt extends HttpServlet {
 				else
 					schedule[5] = true;
 				
-				title = "second cond";//publication thisPub = new publication(title, genre, price, freq, schedule);
+//publication thisPub = new publication(title, genre, price, freq, schedule);
 			}							
 			
 			request.setAttribute("Msg", "<p style='color:darkred'>" + title + " was added successfully!</p>");

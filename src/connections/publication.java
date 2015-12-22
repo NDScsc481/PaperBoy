@@ -1,8 +1,8 @@
-package connections;
+package src.connections;
 
 import java.sql.ResultSet;
 import java.text.*;
-import connections.connect;
+
 
 import java.util.ArrayList;
 
@@ -30,6 +30,10 @@ public class publication {
 	}
 	
 <<<<<<< HEAD
+	public publication(int ID){
+		ResultSet r = cn.searchPublication(ID, "", "");
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public publication(int ID){
 		ResultSet r = cn.searchPublication(ID, "", "");
@@ -52,6 +56,7 @@ public class publication {
 	public publication(int ID){
 		ResultSet r = cn.searchPublication(ID, "", "");
 >>>>>>> Nathan_Branch
+>>>>>>> master
 >>>>>>> master
 		try{
 			while(r.next()){
@@ -121,15 +126,20 @@ public class publication {
 
 	 public double getPrice(){
 <<<<<<< HEAD
+		 return price;
+	 }
+
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	        return price;
 	    }
+>>>>>>> master
 	    
 	    public String getBillTitle(){
 	        return title + " - " +frequency;
 	    }
-<<<<<<< HEAD
 	  public int getPID(){
 		  return PID;
 	  }
@@ -137,11 +147,12 @@ public class publication {
 		  return title;
 	  }
 	
-=======
 
 	public void close(){
 		cn.disconnect();
 	}
+<<<<<<< HEAD
+=======
 >>>>>>> master
 =======
 >>>>>>> master
@@ -152,6 +163,7 @@ public class publication {
 		 return title + " - " +frequency;
 	 }
 
+>>>>>>> master
 
 	 public static ArrayList<String> getSearchPublications(String name, String genre){
 		 connect c = new connect();
@@ -177,6 +189,9 @@ public class publication {
 		 }
 	 }
 
+<<<<<<< HEAD
+}
+=======
 	 public void close(){
 		 cn.disconnect();
 	 }
@@ -252,3 +267,4 @@ public class publication {
 //// setNextIssueDate(next);
 // return next;
 //}
+>>>>>>> master

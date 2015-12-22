@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+
+package src.connections;
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
  package connections;
@@ -266,6 +270,7 @@ public class customer {
 =======
 >>>>>>> master
 package connections;
+>>>>>>> master
 
 
 import java.sql.*;
@@ -519,6 +524,8 @@ public class customer {
 			return null;
 		}
 	}
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
  package connections;
@@ -786,5 +793,6 @@ public class customer {
 >>>>>>> master
 =======
 >>>>>>> Nathan_Branch
+>>>>>>> master
 >>>>>>> master
 }

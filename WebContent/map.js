@@ -1,38 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Google Maps JavaScript API v3 Example: Directions Waypoints</title>
-<style>
-    #map{
-    width: 500px;
-    height: 500px;
-}
-</style>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript">
-<<<<<<< HEAD
-      function yolo() {
-		var stops=${cToday};
-		var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
-=======
-      jQuery(function() {
+	function yolo() {
 		var stops=${cToday};
 		var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
 		stops.push(uLoc);
 		stops.unshift(uLoc);
 		var ord = [];
 		var ordOffset=0;
->>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
     	var map = new window.google.maps.Map(document.getElementById("map"));
+    	var map2 = new window.google.maps.Map(document.getElementById("map"));
 
     // new up complex objects before passing them around
     var directionsDisplay = new window.google.maps.DirectionsRenderer({suppressMarkers: true});
     var directionsService = new window.google.maps.DirectionsService();
+
     Tour_startUp(stops);
 
     window.tour.loadMap(map, directionsDisplay);
@@ -72,35 +51,23 @@ function Tour_startUp(stops) {
 */
         },
         calcRoute: function (directionsService, directionsDisplay) {
-        	var uLoc= "${uAddress}, ${uCity}, ${uState}, ${uZip}";
-        	var perD= "${numD}";
-        	var addressList =[];
-        	stops.push(uLoc);
-    		stops.unshift(uLoc);
-//         	for(var i=0;i<stops.length;i++){
-//         		if(i%(perD.valueOf())==0&&i>0){
-//         			addressList.push({location: uLoc, stopover:true});
-//         		}
-//         		addressList.push({location: stops[i], stopover:true});
-//         	}
             var batches = [];
             var itemsPerBatch = 10; // google API max = 10 - 1 start, 1 stop, and 8 waypoints
             var itemsCounter = 0;
             var wayptsExist = stops.length > 0;
+
             while (wayptsExist) {
                 var subBatch = [];
                 var subitemsCounter = 0;
-				var addEnd;
+
                 for (var j = itemsCounter; j < stops.length; j++) {
                     subitemsCounter++;
                     subBatch.push({
                         location: stops[j],
                         stopover: true
                     });
-// 					subBatch.push(addressList[j])
-                    if (subitemsCounter == (itemsPerBatch)){
+                    if (subitemsCounter == itemsPerBatch)
                         break;
-                    }
                 }
                 itemsCounter += subitemsCounter;
                 batches.push(subBatch);
@@ -165,13 +132,8 @@ function Tour_startUp(stops) {
                                         }
                                     }
                                 }
-                                
                                 directionsDisplay.setDirections(combinedResults);
                                 var legs = combinedResults.routes[0].legs;
-<<<<<<< HEAD
-                                directionsDisplay.getMap().setCenter(legs[legs.length-1].end_location);
-=======
->>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
                                 var oreo = combinedResults.routes[0].waypoint_order;
                                	var toMult = 0;
                                 for(var i=0;i<oreo.length;i++){
@@ -180,11 +142,7 @@ function Tour_startUp(stops) {
                                 	}
                                 	oreo[i]=oreo[i]+(toMult*8);
                                 }
-<<<<<<< HEAD
                                 //var info=${cInfo};
-=======
-                                var info=${cInfo};
->>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
                                 var endPts = [];
                                 for(var i=0;i<oreo.length;i++){
                                 	if(i%8==0&&i>0){
@@ -317,20 +275,3 @@ function createMarker(map, latlng, label, html, color) {
         });
     return marker;
 }
-    </script>
-  </head>
-  <body onload="yolo()">
-  <div id="map"></div>
-  <div id="location_list" style="margin:5px;"></div>
-<<<<<<< HEAD
-  <div id="map2"></div>
-=======
->>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-162157-1";
-urchinTracker();
-</script>
-</body>
-</html>

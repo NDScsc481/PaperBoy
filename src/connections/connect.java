@@ -1,4 +1,4 @@
-package connections;
+package src.connections;
 import java.sql.*;
 import java.util.Date;
 
@@ -21,6 +21,10 @@ public class connect{
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 <<<<<<< HEAD
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3308/saturdays_db", "root", "12345");
+
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/NewDB", "root", "");
 =======
@@ -31,6 +35,7 @@ public class connect{
 =======
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/NewDB", "root", "");
 >>>>>>> Nathan_Branch
+>>>>>>> master
 >>>>>>> master
 			stmt = con.createStatement();
 		}catch(Exception e){
@@ -191,6 +196,7 @@ public class connect{
 			System.out.println(addCoordinates);
 			stmt.executeUpdate(addCoordinates);
 			}
+			
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -370,6 +376,10 @@ public class connect{
 	public ResultSet getDailyCustomerInfo(int wk, int mn){
 		try{
 <<<<<<< HEAD
+			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by Latitude, Longitude, CustomerID");
+
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			return stmt.executeQuery("select * from customerpublications where (DeliveryDays = " + wk + " AND Frequency = \"weekly\") OR (DeliveryDays = " + mn + " AND Frequency = \"monthly\") OR Frequency = \"daily\" order by Latitude, Longitude, CustomerID");
@@ -385,6 +395,7 @@ public class connect{
 >>>>>>> master
 =======
 >>>>>>> Nathan_Branch
+>>>>>>> master
 >>>>>>> master
 		}
 		catch(Exception e){
@@ -434,6 +445,9 @@ public class connect{
 	
 	/**
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 	 * NEEDS TO BE SEEN!!!
 	 * 
 	 * 
@@ -450,7 +464,7 @@ public class connect{
 	public boolean modCustomerInfo(int CID, String type, Date to){
 		try{
 			stmt.executeUpdate("update customers set " + type + " = \"" + to + "\" where CustomerID = " + CID);
-			System.out.println("CID: " + CID + ", type: " + type );
+
 			return true;
 		}
 		catch(Exception e){
@@ -459,8 +473,11 @@ public class connect{
 	}
 	
 	/**
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> master
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 	 * Returns the customer's ID based off of the phone number (unique).
 	 * This is necessary because the customer ID is automatically generated within the database.
 	 * 
@@ -540,6 +557,8 @@ public class connect{
 		ResultSet rs;
 		try{
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			if(PID!=0){
@@ -549,13 +568,18 @@ public class connect{
 				rs = stmt.executeQuery("select * from publications where PublicationName = \"" + t + "\"");
 =======
 >>>>>>> master
+>>>>>>> master
 			if(PID != 0){
-				rs = stmt2.executeQuery("select * from publications where PublicationID = " + PID);
+				rs = stmt.executeQuery("select * from publications where PublicationID = " + PID);
 			}else if(t.length() != 0 && genre.length() == 0){
-				rs = stmt2.executeQuery("select * from publications where PublicationName like \'%" + t + "%\'");
+				rs = stmt.executeQuery("select * from publications where PublicationName like \'%" + t + "%\'");
 			}else if(genre.length() != 0 && t.length() == 0){
-				rs = stmt2.executeQuery("select * from publications where genre like \'%" + genre + "%\'");
+				rs = stmt.executeQuery("select * from publications where genre like \'%" + genre + "%\'");
 			}else {
+<<<<<<< HEAD
+				rs = stmt.executeQuery("select * from publications");
+
+=======
 				rs = stmt2.executeQuery("select * from publications");
 <<<<<<< HEAD
 =======
@@ -567,6 +591,7 @@ public class connect{
 >>>>>>> master
 =======
 >>>>>>> Nathan_Branch
+>>>>>>> master
 >>>>>>> master
 			}
 			return rs;

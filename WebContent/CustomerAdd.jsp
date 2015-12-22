@@ -39,12 +39,20 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> master
 	<input type="text" name="first" value="${first}" placeholder = "First Name"/>
     <input type="text" name="last" value="${last}" placeholder = "Last Name"/><p>
     <input type="text" name="add1" value="${add1}" placeholder = "Address"/>
     <input type="text" name="add2" value="${add2}"placeholder = "Address 2"/>
     <input type="text" name="c" value="${c}"placeholder = "City"/><p>
     <select name="s" placeholder = "State">
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> master
 	<input type="text" name="first" value="${firstName}"/><br><sup>First Name</sup><p>
@@ -65,6 +73,10 @@
 >>>>>>> master
 =======
 >>>>>>> Nathan_Branch
+<<<<<<< HEAD
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
+=======
+>>>>>>> master
 >>>>>>> master
     	<option selected="${s}">${s}</option>
 		<option value="AL">AL</option>
