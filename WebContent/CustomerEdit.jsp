@@ -20,16 +20,27 @@
 <div id="nav">
 <ul>
   <li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>  
+<<<<<<< HEAD
   <li><a href="CustomerCenter.jsp">Customers</a></li>
   <li><a href="PublicationCenter.jsp">Publications</a></li>
   <li><a href="Printing.jsp">Printing</a></li>
   <ul style="float:right;list-style-type:none;">
   <li><a class="active" href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+=======
+  <li><a class="active" href="CustomerCenter.jsp">Customers</a></li>
+  <li><a href="PublicationCenter.jsp">Publications</a></li>
+  <li><a href="Printing.jsp">Printing</a></li>
+  <ul style="float:right;list-style-type:none;">
+  <li><a href="EmployeeHome.jsp"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
   <li><a href="Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 </ul>
 </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 <div id="bckgrnd">
 <div id="section">
 <h2> Customer Profile</h2>
@@ -80,7 +91,10 @@
 	<input type="submit" value="Edit Customer Details" name="add"><br><br>
 	<input type="submit" value="Edit Customer Subscriptions" name="add">
 </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 </div>
 </div>
 <div id="footer">

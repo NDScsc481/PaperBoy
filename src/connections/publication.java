@@ -11,7 +11,7 @@ public class publication {
 	private String genre;
 	private double price;
 	private String frequency;
-	protected int PID;
+	private int PID;
 	private String status;
 	private int dayNum;
 	private connect cn = new connect();
@@ -19,7 +19,7 @@ public class publication {
 	
 	public publication(String tit, String gen, double prc, String freq, int dNum){
 		cn.addPublication(tit, gen, prc, freq, dNum);
-		PID = cn.getPublicationID(title);
+		PID = cn.getPublicationID(tit);
 		dayNum = dNum;
 		status = "ACTIVE";
 		title = tit;
@@ -29,8 +29,24 @@ public class publication {
 		dayNum = dNum;
 	}
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+	public publication(connect con, int ID){
+
+		cn = con;
+=======
+	public publication(int ID){
+<<<<<<< HEAD
+		ResultSet r = cn.searchPublication(ID, "", "");
+=======
+>>>>>>> master
+		ResultSet r = cn.searchPublication(ID, "");
+
+=======
 	public publication(int ID){
 		ResultSet r = cn.searchPublication(ID, "", "");
+>>>>>>> Nathan_Branch
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 		try{
 			while(r.next()){
 				PID = r.getInt("PublicationID");
@@ -40,11 +56,13 @@ public class publication {
 				frequency = r.getString("Frequency");
 				genre = r.getString("Genre");
 				dayNum = r.getInt("DeliveryDays");
+
 			}
 
 		}
 		catch(Exception e){
 			PID = 0;
+
 		}
 	}
 	
@@ -96,9 +114,37 @@ public class publication {
 	}
 
 	 public double getPrice(){
+<<<<<<< HEAD
 		 return price;
 	 }
 
+=======
+<<<<<<< HEAD
+	        return price;
+	    }
+	    
+	    public String getBillTitle(){
+	        return title + " - " +frequency;
+	    }
+<<<<<<< HEAD
+	  public int getPID(){
+		  return PID;
+	  }
+	  public String getTitle(){
+		  return title;
+	  }
+	
+=======
+
+	public void close(){
+		cn.disconnect();
+	}
+>>>>>>> master
+=======
+		 return price;
+	 }
+
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 	 public String getBillTitle(){
 		 return title + " - " +frequency;
 	 }
@@ -131,6 +177,10 @@ public class publication {
 	 public void close(){
 		 cn.disconnect();
 	 }
+<<<<<<< HEAD
+=======
+>>>>>>> Nathan_Branch
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 }
 //public static String getNextIssueDate(String issuedDate, String freq){
 //

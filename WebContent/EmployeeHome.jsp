@@ -32,7 +32,11 @@
 
 <div id="bckgrnd">
 <div id="section">
+<<<<<<< HEAD
 <h1>Welcome </h1>
+=======
+<h1>Welcome Drone</h1>
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 
 <form action="EmpHomeSrvlt" method="post">
     <input type="submit" value="View/Edit Profile">            

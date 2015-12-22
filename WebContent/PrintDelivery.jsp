@@ -43,6 +43,7 @@ There are ${cLength} locations to visit today.<br>
 ${butt}<br>
 </div>
 </div>
+</div>
 
 <div id="footer">
 Copyright © Team One - CSC 481

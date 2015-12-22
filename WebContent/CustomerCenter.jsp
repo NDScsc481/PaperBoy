@@ -32,7 +32,17 @@
 <div id="bckgrnd">
 <div id="section">
 
+<<<<<<< HEAD
 <h1>Customer Center</h1>
+=======
+<<<<<<< HEAD
+<h1>Customer Center</h1>
+=======
+<a href="CustomerAdd.jsp"><b><ins>Add</ins></b></a><br> Add a customer into database<br><br>
+<a href="CustomerLookup.jsp"><b><ins>Lookup/Modify</ins></b></a><br> Lookup customer in database
+</div>
+>>>>>>> Nathan_Branch
+>>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 
 <a href="CustomerAdd.jsp"><b><ins><span class="glyphicon glyphicon-plus"></span> Add</ins></b></a><br> Add a customer into database<br><br>
 <a href="CustomerEdit.jsp"><b><ins><span class="glyphicon glyphicon-edit"></span> Edit</ins></b></a><br> Edit customer information<br><br>
