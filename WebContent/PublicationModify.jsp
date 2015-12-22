@@ -92,10 +92,13 @@
 <div id="bckgrnd">
 <div id="section">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 <h1>Modify Publications</h1>
 >>>>>>> a6dcfcfcbca8a4c07535ca5f7ef92de01fa8f224
 </div>
 =======
+>>>>>>> master
 <h2>Publication Information</h2>
 <span id="message">${msg}<br></span>
 <form action="PubEditSrvlt" method="post">
@@ -137,7 +140,14 @@
 	<br>
 	<input type="submit" value="Back to search" name="subm">
 </form>
+<<<<<<< HEAD
+=======
+<h1>Modify Publications</h1>
+</div>
+>>>>>>> master
+=======
 >>>>>>> Nathan_Branch
+>>>>>>> master
 </div>
 <script type="text/javascript">
 	function replace(){

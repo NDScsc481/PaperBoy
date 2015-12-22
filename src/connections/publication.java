@@ -29,8 +29,35 @@ public class publication {
 		dayNum = dNum;
 	}
 	
+<<<<<<< HEAD
 	public publication(int ID){
 		ResultSet r = cn.searchPublication(ID, "", "");
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	public publication(int ID){
+		ResultSet r = cn.searchPublication(ID, "", "");
+=======
+=======
+>>>>>>> master
+<<<<<<< HEAD
+	public publication(connect con, int ID){
+
+		cn = con;
+=======
+	public publication(int ID){
+>>>>>>> master
+		ResultSet r = cn.searchPublication(ID, "");
+
+<<<<<<< HEAD
+>>>>>>> master
+=======
+=======
+	public publication(int ID){
+		ResultSet r = cn.searchPublication(ID, "", "");
+>>>>>>> Nathan_Branch
+>>>>>>> master
+>>>>>>> master
 		try{
 			while(r.next()){
 				PID = r.getInt("PublicationID");
@@ -98,9 +125,17 @@ public class publication {
 	}
 
 	 public double getPrice(){
+<<<<<<< HEAD
 		 return price;
 	 }
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	        return price;
+	    }
+>>>>>>> master
 	    
 	    public String getBillTitle(){
 	        return title + " - " +frequency;
@@ -116,6 +151,19 @@ public class publication {
 	public void close(){
 		cn.disconnect();
 	}
+<<<<<<< HEAD
+=======
+>>>>>>> master
+=======
+>>>>>>> master
+		 return price;
+	 }
+
+	 public String getBillTitle(){
+		 return title + " - " +frequency;
+	 }
+
+>>>>>>> master
 
 	 public static ArrayList<String> getSearchPublications(String name, String genre){
 		 connect c = new connect();
@@ -141,4 +189,82 @@ public class publication {
 		 }
 	 }
 
+<<<<<<< HEAD
 }
+=======
+	 public void close(){
+		 cn.disconnect();
+	 }
+<<<<<<< HEAD
+=======
+	        return price;
+	    }
+	    
+	    public String getBillTitle(){
+	        return title + " - " +frequency;
+	    }
+<<<<<<< HEAD
+	  public int getPID(){
+		  return PID;
+	  }
+	  public String getTitle(){
+		  return title;
+	  }
+	
+=======
+
+	public void close(){
+		cn.disconnect();
+	}
+>>>>>>> master
+>>>>>>> master
+=======
+>>>>>>> Nathan_Branch
+>>>>>>> master
+}
+//public static String getNextIssueDate(String issuedDate, String freq){
+//
+//freq= freq.toLowerCase();
+////System.out.println("freq: " + freq);
+//Date today = new Date();
+//Date nextDate = DateTime.strToDate(issuedDate);
+// if(freq.equals("daily")){
+//	 while(nextDate.before(today)){
+//		 String str = DateTime.dateToStr(nextDate);
+//		 String todayStr = DateTime.dateToStr(today);
+//		 if(str.equals(todayStr)){
+//			break;
+//		}
+//		 else{
+//		    nextDate = DateTime.addOneDay(nextDate);
+//			}
+//		}
+//	}
+// else if(freq.equals("weekly")){
+//	 while(nextDate.before(today)){
+//		 String str = DateTime.dateToStr(nextDate);
+//		 String todayStr = DateTime.dateToStr(today);
+//		if(str.equals(todayStr)){
+//		    break;
+//		}else{
+//			 nextDate = DateTime.addOneWeek(nextDate);
+//			   // System.out.println("next date: "+ nextDate + " today : " + today);
+//		}
+//	}
+//}
+// else if(freq.equals("monthly")){
+//	 while(nextDate.before(today)){
+//		 String str = DateTime.dateToStr(nextDate);
+//		 String todayStr = DateTime.dateToStr(today);
+//		if(str.equals(todayStr)){
+//		    break;
+//		}else{
+//		nextDate = DateTime.addOneMonth(nextDate);
+//		}
+//	 }
+// }
+// String next =  DateTime.dateToStr(nextDate);
+//// setNextIssueDate(next);
+// return next;
+//}
+>>>>>>> master
